@@ -13,7 +13,6 @@ class CreateApartmentsTable extends Migration
      */
     public function up()
     {
-        // Test
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
