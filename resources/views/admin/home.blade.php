@@ -18,6 +18,7 @@
                         <p>
                             Benvenuto {{ Auth::user()->name }} {{ Auth::user()->surname }}
                         </p>
+                        <a class="btn btn-primary text-white" href="{{ route('admin.apartments.index') }}">Appartamenti</a>
                     </div>
                 </div>
             </div>
