@@ -16,7 +16,7 @@ class CreatePositionsTable extends Migration
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('apartment_id')->constrained();
-            $table->char('postal_code', 5);
+            $table->char('postal_code',10);
             $table->string('province');
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
