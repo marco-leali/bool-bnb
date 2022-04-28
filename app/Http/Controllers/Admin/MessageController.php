@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+Use App\Http\Controllers\Controller;
 
-use App\Models\Pack;
+use App\Models\Message;
 use Illuminate\Http\Request;
 
-class PackController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class PackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pack  $pack
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Pack $pack)
+    public function show(Message $message)
     {
         //
     }
@@ -52,10 +53,10 @@ class PackController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pack  $pack
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pack $pack)
+    public function edit(Message $message)
     {
         //
     }
@@ -64,10 +65,10 @@ class PackController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pack  $pack
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pack $pack)
+    public function update(Request $request, Message $message)
     {
         //
     }
@@ -75,10 +76,10 @@ class PackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pack  $pack
+     * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pack $pack)
+    public function destroy(Message $message)
     {
         //
     }
