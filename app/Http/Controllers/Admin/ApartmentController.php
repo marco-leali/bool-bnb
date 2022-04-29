@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use App\Models\Apartment;
+use App\Models\Position;
+use App\Models\Service;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,10 +38,10 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        
+        $services = Service::all();
         $apartment = new Apartment();
-    
-        return view('admin.apartments.create', compact('apartment') );
+
+        return view('admin.apartments.create', compact('apartment', 'services'));
     }
 
     /**
@@ -51,22 +53,31 @@ class ApartmentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title_desc'=> 'required|string|min:5|max:255',
-            'image'=> 'nullable|url',
-            'room'=> 'required|numeric',
-            'bathroom'=> 'required|numeric',
-            'bed'=> 'required|numeric',
-            'square_meters'=> 'required|numeric',
-            'visible'=> 'boolean',
-        ],[
-            'required'=> 'il campo :attribute è obbligatorio',  
-            'image.url'=> 'l\'immagine non è valida',  
-            'title_desc.min'=> 'il titolo deve avere almeno 5 caratteri'  
+            'title_desc' => 'required|string|min:5|max:255',
+            'image' => 'nullable|url',
+            'room' => 'required|numeric',
+            'bathroom' => 'required|numeric',
+            'bed' => 'required|numeric',
+            'square_meters' => 'required|numeric',
+            'visible' => 'boolean',
+            'street' => 'required|string|min:4|max:255',
+            'city' => 'required|string|min:3|max:255',
+            'province' => 'required|string|max:2',
+            'postal_code' => 'required|string|max:10'
+        ], [
+            'required' => 'il campo :attribute è obbligatorio',
+            'image.url' => 'l\'immagine non è valida',
+            'title_desc.min' => 'il titolo deve avere almeno 5 caratteri'
         ]);
 
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $apartment = Apartment::create($data);
+
+        if (array_key_exists('services', $data)) $apartment->services()->attach($data['services']);
+
+        $data['apartment_id'] = $apartment->id;
+        $position = Position::create($data);
 
         return redirect()->route('admin.apartments.index')->with('message', "$apartment->title_desc creato con successo");
     }
@@ -92,8 +103,10 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        
-        return view('admin.apartments.edit', compact('apartment'));
+        $services = Service::all();
+        $current_services = $apartment->services()->pluck('id')->toArray();
+
+        return view('admin.apartments.edit', compact('apartment', 'services', 'current_services'));
     }
 
     /**
@@ -106,23 +119,26 @@ class ApartmentController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
         $request->validate([
-            'title_desc'=> 'required|string|min:5|max:255',
-            'image'=> 'nullable|url',
-            'room'=> 'required|numeric',
-            'bathroom'=> 'required|numeric',
-            'bed'=> 'required|numeric',
-            'square_meters'=> 'required|numeric',
-            'visible'=> 'boolean',
-        ],[
-            'required'=> 'il campo :attribute è obbligatorio',  
-            'image.url'=> 'l\'immagine non è valida',  
-            'title_desc.min'=> 'il titolo deve avere almeno 5 caratteri'  
+            'title_desc' => 'required|string|min:5|max:255',
+            'image' => 'nullable|url',
+            'room' => 'required|numeric',
+            'bathroom' => 'required|numeric',
+            'bed' => 'required|numeric',
+            'square_meters' => 'required|numeric',
+            'visible' => 'boolean',
+        ], [
+            'required' => 'il campo :attribute è obbligatorio',
+            'image.url' => 'l\'immagine non è valida',
+            'title_desc.min' => 'il titolo deve avere almeno 5 caratteri'
         ]);
 
         $data = $request->all();
         $apartment->update($data);
 
-        return redirect()->route('admin.apartments.show',$apartment)->with('message', "Complimenti hai aggionato con successo l'appartamento");
+        if (array_key_exists('services', $data)) $apartment->services()->sync($data['services']);
+        else $apartment->services()->detach();
+
+        return redirect()->route('admin.apartments.show', $apartment)->with('message', "Complimenti hai aggionato con successo l'appartamento");
     }
 
     /**
