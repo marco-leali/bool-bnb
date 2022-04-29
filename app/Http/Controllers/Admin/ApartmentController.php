@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use App\Models\Apartment;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ApartmentController extends Controller
 {
@@ -34,7 +36,10 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.apartments.create');
+        
+        $apartment = new Apartment();
+    
+        return view('admin.apartments.create', compact('apartment') );
     }
 
     /**
@@ -45,7 +50,25 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title_desc'=> 'required|string|min:5|max:255',
+            'image'=> 'nullable|url',
+            'room'=> 'required|numeric',
+            'bathroom'=> 'required|numeric',
+            'bed'=> 'required|numeric',
+            'square_meters'=> 'required|numeric',
+            'visible'=> 'boolean',
+        ],[
+            'required'=> 'il campo :attribute è obbligatorio',  
+            'image.url'=> 'l\'immagine non è valida',  
+            'title_desc.min'=> 'il titolo deve avere almeno 5 caratteri'  
+        ]);
+
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+        $apartment = Apartment::create($data);
+
+        return redirect()->route('admin.apartments.index')->with('message', "$apartment->title_desc creato con successo");
     }
 
     /**
@@ -67,7 +90,8 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        //
+        
+        return view('admin.apartments.edit', compact('apartment'));
     }
 
     /**

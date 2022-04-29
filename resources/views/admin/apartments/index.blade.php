@@ -1,11 +1,16 @@
 @extends('layouts.app')
 @section('content')
+
+
     <div class="container my-5">
         @if (session('message'))
             <div class="alert alert-success">
                 {{ session('message') }}
             </div>
         @endif
+
+        <a class="btn btn-success text-light my-3" href="{{ route('admin.apartments.create')}}">Aggiungi appartamento</a>
+
         <table class="table text-center">
             <thead>
                 <tr>
