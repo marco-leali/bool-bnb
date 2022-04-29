@@ -15,7 +15,7 @@ class CreateIpAddressesTable extends Migration
     {
         Schema::create('ip_addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id')->constrained();
+            $table->foreignId('apartment_id')->constrained()->onDelete('cascade');
             $table->ipAddress('ip')->required();
             $table->timestamps();
         });
