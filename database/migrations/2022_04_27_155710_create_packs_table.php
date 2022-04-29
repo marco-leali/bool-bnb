@@ -16,7 +16,7 @@ class CreatePacksTable extends Migration
         Schema::create('packs', function (Blueprint $table) {
             $table->id();
             $table->string('name', 25);
-            $table->float('price', 4,2);
+            $table->float('price', 4, 2);
             $table->smallInteger('time')->unsigned();
             $table->timestamps();
         });

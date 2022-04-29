@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-Use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use App\Models\Apartment;
 use App\User;
 use Illuminate\Http\Request;
@@ -16,7 +17,13 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id',auth()->user()->id)->get();
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
+
+        // Carbon per aggiungere le ore
+        /*  foreach ($apartments as $apartment) {
+            $test = $apartment->created_at->addHours(24);
+        }
+        dd($test); */
         return view('admin.apartments.index', compact('apartments'));
     }
 
