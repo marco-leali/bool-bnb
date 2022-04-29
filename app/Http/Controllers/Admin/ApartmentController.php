@@ -79,6 +79,8 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+        /* $position  = $apartment->position(); */
+
         return view('admin.apartments.show', compact('apartment'));
     }
 
@@ -103,7 +105,24 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, Apartment $apartment)
     {
-        //
+        $request->validate([
+            'title_desc'=> 'required|string|min:5|max:255',
+            'image'=> 'nullable|url',
+            'room'=> 'required|numeric',
+            'bathroom'=> 'required|numeric',
+            'bed'=> 'required|numeric',
+            'square_meters'=> 'required|numeric',
+            'visible'=> 'boolean',
+        ],[
+            'required'=> 'il campo :attribute è obbligatorio',  
+            'image.url'=> 'l\'immagine non è valida',  
+            'title_desc.min'=> 'il titolo deve avere almeno 5 caratteri'  
+        ]);
+
+        $data = $request->all();
+        $apartment->update($data);
+
+        return redirect()->route('admin.apartments.show',$apartment)->with('message', "Complimenti hai aggionato con successo l'appartamento");
     }
 
     /**

@@ -14,9 +14,16 @@
                         <p class="card-text">Bagni: {{ $apartment->bathroom }}</p>
                         <p class="card-text">Letti: {{ $apartment->bed }}</p>
                         <p class="card-text">Metri quadrati: {{ $apartment->square_meters }}</p>
+                        <p class="card-text">Indirizzo:</p>
+                        <ul>
+                            <li>Provincia: {{ $apartment->position->province }}</li>
+                            <li>Città: {{ $apartment->position->city }},{{ $apartment->position->postal_code }}</li>
+                            <li>Via: {{$apartment->position->street}}</li>
+                        </ul>
                         <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary text-light">Torna
-                            indietro</a>
+                            indietro</a> 
                     </div>
+                        
                 </div>
             </div>
         </div>
