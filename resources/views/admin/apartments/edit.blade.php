@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('includes.form')
+    <form action="{{ route('admin.apartments.update') }}" method="POST">
+        @method('PUT')
+        @include('includes.form')
+    </form>
 @endsection
