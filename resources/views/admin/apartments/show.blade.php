@@ -10,6 +10,16 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">Appartamento: {{ $apartment->title_desc }}</h5>
+                        <hr>
+                        <p class="card-text">Servizi:</p>
+                        <div class="d-flex">
+                            @forelse ($apartment->services as $service)
+                                <span class="badge rounded-pill bg-info text-dark mx-2 fs-6">{{ $service->name }}</span>
+                            @empty
+                                Nessun Servizio
+                            @endforelse
+                        </div>
+                        <hr>
                         <p class="card-text">Stanze: {{ $apartment->room }}</p>
                         <p class="card-text">Bagni: {{ $apartment->bathroom }}</p>
                         <p class="card-text">Letti: {{ $apartment->bed }}</p>
@@ -18,12 +28,12 @@
                         <ul>
                             <li>Provincia: {{ $apartment->position->province }}</li>
                             <li>Città: {{ $apartment->position->city }},{{ $apartment->position->postal_code }}</li>
-                            <li>Via: {{$apartment->position->street}}</li>
+                            <li>Via: {{ $apartment->position->street }}</li>
                         </ul>
                         <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary text-light">Torna
-                            indietro</a> 
+                            indietro</a>
                     </div>
-                        
+
                 </div>
             </div>
         </div>
