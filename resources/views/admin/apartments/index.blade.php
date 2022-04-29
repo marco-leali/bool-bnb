@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
     <div class="container my-5">
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <table class="table text-center">
             <thead>
                 <tr>
@@ -37,10 +42,7 @@
                                     class="fa-solid fa-magnifying-glass"></i></a>
                             <a href="{{ route('admin.apartments.edit', $apartment->id) }}"
                                 class="btn btn-small btn-warning rounded-circle"><i class="fa-solid fa-pencil"></i></a>
-                            <form class="d-inline" action="">
-                                <button class="btn btn-small btn-danger rounded-circle text-light"><i
-                                        class="fa-solid fa-trash "></i></button>
-                            </form>
+                            @include('includes.modal-confirm')
                         </td>
                     @empty <td class="text-center fs-1" colspan="7">Non hai appartamenti registrati</td>
                     </tr>

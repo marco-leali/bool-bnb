@@ -90,6 +90,11 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        if (count($apartment->services)) $apartment->services()->detach();
+        if (count($apartment->packs)) $apartment->packs()->detach();
+
+        $apartment->delete();
+
+        return redirect()->route('admin.apartments.index')->with('message', "L'Appartamento: $apartment->title_desc è stato eliminato con successo");
     }
 }
