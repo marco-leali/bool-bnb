@@ -156,4 +156,11 @@ class ApartmentController extends Controller
 
         return redirect()->route('admin.apartments.index')->with('message', "L'Appartamento: $apartment->title_desc è stato eliminato con successo");
     }
+
+    public function showMessages(Apartment $apartment){
+
+/*         $messages = $apartment->messages;
+ */
+        return view('admin.apartments.show-messages', compact('apartment'));
+    }
 }

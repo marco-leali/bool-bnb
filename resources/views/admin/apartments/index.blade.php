@@ -40,12 +40,15 @@
                         <td>{{ $apartment->square_meters }}</td>
                         <td> {!! $apartment->visible ? '<i class="fa-solid fa-eye fa-lg"></i>' : '<i class="fa-solid fa-eye-slash fa-lg"></i>' !!}</td>
                         <td>{{ count($apartment->ipaddresses) }}</td>
-                        <td><a class="btn btn-small btn-secondary rounded-circle position-relative" href="#"><i
+                        <td><a class="btn btn-small btn-secondary rounded-circle position-relative" href="{{ route('admin.apartments.show-messages', $apartment) }}"><i
                                     class="fa-solid fa-envelope"></i><span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                    {{ count($apartment->messages)}}
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a></td>
+                               {{--  @foreach ($apartment->messages as $message)
+                                    {{ $message->email }}
+                                @endforeach --}}
                         <td>
                             <a href="{{ route('admin.apartments.show', $apartment->id) }}"
                                 class="btn btn-small btn-primary rounded-circle text-light"><i
