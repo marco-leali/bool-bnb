@@ -16,7 +16,11 @@
 
                         {{ __('You are logged in!') }}
                         <p>
-                            Benvenuto {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                            @if (Auth::user()->name && Auth::user()->surname)
+                                Benvenuto {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                            @else
+                                Benvenuto {{ Auth::user()->email }}
+                            @endif
                         </p>
                         <a class="btn btn-primary text-white" href="{{ route('admin.apartments.index') }}">Appartamenti</a>
                     </div>

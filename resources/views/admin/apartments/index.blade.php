@@ -1,7 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
-
     <div class="container my-5">
         @if (session('message'))
             <div class="alert alert-success">
@@ -9,7 +7,7 @@
             </div>
         @endif
 
-        <a class="btn btn-success text-light my-3" href="{{ route('admin.apartments.create')}}">Aggiungi appartamento</a>
+        <a class="btn btn-success text-light my-3" href="{{ route('admin.apartments.create') }}">Aggiungi appartamento</a>
 
         <table class="table text-center">
             <thead>
@@ -49,7 +47,7 @@
                                 class="btn btn-small btn-warning rounded-circle"><i class="fa-solid fa-pencil"></i></a>
                             @include('includes.modal-confirm')
                         </td>
-                    @empty <td class="text-center fs-1" colspan="7">Non hai appartamenti registrati</td>
+                    @empty <td class="text-center fs-1" colspan="9">Non hai appartamenti registrati</td>
                     </tr>
                 @endforelse
             </tbody>
