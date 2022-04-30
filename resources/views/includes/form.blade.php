@@ -131,11 +131,11 @@
     <div class="d-flex align-items-center justify-content-around my-3">
         @foreach ($services as $service)
             <div class="form-check form-switch">
-                <input type="checkbox" class="form-check-input fs-4" role="switch"
+                <input role="button" type="checkbox" class="form-check-input fs-4" role="switch"
                     id="service-input-{{ $service->id }}" value="{{ $service->id }}" name="services[]"
                     @if (in_array($service->id, old('services', $current_services ?? []))) checked @endif>
-                <label class="form-check-label fs-5"
-                    for="tag-input-{{ $service->id }}">{{ $service->name }}</label>
+                <label role="button" class="form-check-label fs-5"
+                    for="service-input-{{ $service->id }}">{{ $service->name }}</label>
             </div>
         @endforeach
     </div>
