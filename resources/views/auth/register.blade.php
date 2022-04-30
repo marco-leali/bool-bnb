@@ -51,7 +51,7 @@
                                     <input id="date_of_birth" type="date"
                                         class="form-control @error('date_of_birth') is-invalid @enderror"
                                         name="date_of_birth" value="{{ old('date_of_birth') }}"
-                                        autocomplete="date_of_birth" autofocus>
+                                        autocomplete="date_of_birth" autofocus max="2004-01-01">
 
                                     @error('date_of_birth')
                                         <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        name="email" value="{{ old('email') }}" required autocomplete="email" >
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
