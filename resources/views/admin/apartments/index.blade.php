@@ -7,9 +7,9 @@
             </div>
         @endif
 
-        <a class="btn btn-success text-light my-3" href="{{ route('admin.apartments.create') }}">Aggiungi appartamento</a>
+        <a class="btn btn-success shadow text-light my-3" href="{{ route('admin.apartments.create') }}">Aggiungi appartamento</a>
 
-        <table class="table text-center">
+        <table class="table border shadow text-center">
             <thead>
                 <tr>
                     <th scope="col">Promuovi</th>
@@ -31,7 +31,6 @@
                         <td>
                             <a href="#" class="btn btn-small btn-outline-secondary rounded-circle" title="Sponsorizza ora"><i
                                     class="fa-solid fa-chart-line"></i></a>
-
                         </td>
                         <td>
                             <a href="{{ route('admin.apartments.show', $apartment->id) }}">
