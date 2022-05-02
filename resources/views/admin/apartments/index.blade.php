@@ -7,7 +7,10 @@
             </div>
         @endif
 
-        <a class="btn btn-success shadow text-light my-3" href="{{ route('admin.apartments.create') }}">Aggiungi appartamento</a>
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="text-muted">La tua lista appartamenti</h3>
+            <a class="btn btn-success shadow text-light my-3" href="{{ route('admin.apartments.create') }}">Aggiungi appartamento</a>
+        </div>
 
         <table class="table border shadow text-center">
             <thead>
