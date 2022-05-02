@@ -54,10 +54,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-
-        /* $response = Http::get('https://jsonplaceholder.typicode.com/posts');
-        dd($response->body()); */
-
+        
 
         $request->validate([
             'title_desc' => 'required|string|min:5|max:255',
@@ -78,12 +75,31 @@ class ApartmentController extends Controller
         ]);
 
         $data = $request->all();
+
+         
+
+      
+        
         $data['user_id'] = Auth::id();
         $apartment = Apartment::create($data);
 
         if (array_key_exists('services', $data)) $apartment->services()->attach($data['services']);
 
         $data['apartment_id'] = $apartment->id;
+
+        $response = Http::get('https://api.tomtom.com/search/2/structuredGeocode.json', [
+            'countryCode' => 'IT',
+            'streetNumber' => $data['street'],
+            'streetName' => $data['street'],
+            'municipality' => $data['city'],
+            'postalCode' => $data['postal_code'],
+            'key' => 'IKVotV9Xwnzy8UimnZdGePT1sU3HI33N',
+          
+        ]); 
+
+        $data['latitude'] = $response->json()['results'][0]['position']['lat'];
+        $data['longitude'] = $response->json()['results'][0]['position']['lon'];
+
         $position = Position::create($data);
 
         return redirect()->route('admin.apartments.index')->with('message', "$apartment->title_desc creato con successo");
