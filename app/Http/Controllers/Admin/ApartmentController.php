@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 
 class ApartmentController extends Controller
@@ -53,6 +54,11 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+
+        /* $response = Http::get('https://jsonplaceholder.typicode.com/posts');
+        dd($response->body()); */
+
+
         $request->validate([
             'title_desc' => 'required|string|min:5|max:255',
             'image' => 'nullable|url',

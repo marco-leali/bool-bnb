@@ -151,7 +151,7 @@
     <label class="btn btn-outline-danger" for="danger-outlined"><i class="fa-solid fa-eye-slash fa-lg"></i></label>
 
     <div class="mt-2">
-        <button type="submit" class="btn btn-primary text-light">Invia</button>
+        <button id="sub" type="submit" class="btn btn-primary text-light">Invia</button>
         <a class="btn btn-primary text-light " href="{{ route('admin.apartments.index') }}">Torna indietro</a>
     </div>
 
