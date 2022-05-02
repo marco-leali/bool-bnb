@@ -23,6 +23,9 @@
                             @endif
                         </p>
                         <a class="btn btn-primary text-white" href="{{ route('admin.apartments.index') }}">Appartamenti</a>
+                        <a class="btn btn-secondary text-white" href="{{ route('admin.packs.index') }}">Paccheti
+                            Sponsorizzazione</a>
+
                     </div>
                 </div>
             </div>

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-Use App\Http\Controllers\Controller;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Pack;
 use Illuminate\Http\Request;
@@ -15,7 +16,9 @@ class PackController extends Controller
      */
     public function index()
     {
-        //
+        $packs = Pack::orderBy('id', 'desc')->get();
+
+        return view('admin.packs.index', compact('packs'));
     }
 
     /**

@@ -140,6 +140,15 @@
         @endforeach
     </div>
 
+    <h4>Visibile</h4>
+
+    <input type="radio" class="btn-check" name="visible" value="1" id="success-outlined" autocomplete="off"
+        @if (old('visible', $apartment->visible)) checked @endif>
+    <label class="btn btn-outline-success me-3" for="success-outlined"><i class="fa-solid fa-eye fa-lg"></i></label>
+
+    <input type="radio" class="btn-check" name="visible" value="0" id="danger-outlined" autocomplete="off"
+        @if (!old('visible', $apartment->visible)) checked @endif>
+    <label class="btn btn-outline-danger" for="danger-outlined"><i class="fa-solid fa-eye-slash fa-lg"></i></label>
 
     <div class="mt-2">
         <button type="submit" class="btn btn-primary text-light">Invia</button>

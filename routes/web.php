@@ -24,6 +24,7 @@ Route::middleware('auth')
         Route::get('/apartments/{apartment}/messages', 'ApartmentController@showMessages')->name('apartments.show-messages');
         Route::get('/', 'HomeController@index');
         Route::resource('/apartments', 'ApartmentController');
+        Route::resource('/packs', 'PackController');
     });
 
 

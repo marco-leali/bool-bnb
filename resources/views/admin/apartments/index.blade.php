@@ -12,6 +12,7 @@
         <table class="table text-center">
             <thead>
                 <tr>
+                    <th scope="col">Promuovi</th>
                     <th scope="col">Immagine</th>
                     <th scope="col">Appartamento</th>
                     <th scope="col">Stanze</th>
@@ -28,6 +29,11 @@
                 @forelse ($apartments as $apartment)
                     <tr class="align-middle">
                         <td>
+                            <a href="#" class="btn btn-small btn-outline-secondary rounded-circle" title="Sponsorizza ora"><i
+                                    class="fa-solid fa-chart-line"></i></a>
+
+                        </td>
+                        <td>
                             <a href="{{ route('admin.apartments.show', $apartment->id) }}">
                                 <img class="img-scale" src="{{ $apartment->image }}" alt="immagine appartamento"
                                     width='50' height='50'>
@@ -38,15 +44,16 @@
                         <td>{{ $apartment->bathroom }}</td>
                         <td>{{ $apartment->bed }}</td>
                         <td>{{ $apartment->square_meters }}</td>
-                        <td> {!! $apartment->visible ? '<i class="fa-solid fa-eye fa-lg"></i>' : '<i class="fa-solid fa-eye-slash fa-lg"></i>' !!}</td>
+                        <td> {!! $apartment->visible ? '<i class="fa-solid fa-eye fa-lg text-success"></i>' : '<i class="fa-solid fa-eye-slash fa-lg text-danger"></i>' !!}</td>
                         <td>{{ count($apartment->ipaddresses) }}</td>
-                        <td><a class="btn btn-small btn-secondary rounded-circle position-relative" href="{{ route('admin.apartments.show-messages', $apartment) }}"><i
+                        <td><a class="btn btn-small btn-secondary rounded-circle position-relative"
+                                href="{{ route('admin.apartments.show-messages', $apartment) }}"><i
                                     class="fa-solid fa-envelope"></i><span
                                     class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                   {{ count($apartment->messages)}}
+                                    {{ count($apartment->messages) }}
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a></td>
-                               {{--  @foreach ($apartment->messages as $message)
+                        {{-- @foreach ($apartment->messages as $message)
                                     {{ $message->email }}
                                 @endforeach --}}
                         <td>

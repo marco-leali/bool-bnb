@@ -28,6 +28,7 @@ class ApartmentController extends Controller
             $test = $apartment->created_at->addHours(24);
         }
         dd($test); */
+
         return view('admin.apartments.index', compact('apartments'));
     }
 
@@ -157,10 +158,8 @@ class ApartmentController extends Controller
         return redirect()->route('admin.apartments.index')->with('message', "L'Appartamento: $apartment->title_desc è stato eliminato con successo");
     }
 
-    public function showMessages(Apartment $apartment){
-
-/*         $messages = $apartment->messages;
- */
+    public function showMessages(Apartment $apartment)
+    {
         return view('admin.apartments.show-messages', compact('apartment'));
     }
 }

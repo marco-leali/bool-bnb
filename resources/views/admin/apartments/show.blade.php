@@ -9,7 +9,10 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Appartamento: {{ $apartment->title_desc }}</h5>
+                        <h5 class="card-title">Appartamento: {{ $apartment->title_desc }} </h5>
+                        <h5> Visibile:
+                            {!! $apartment->visible ? '<i class="fa-solid fa-eye fa-lg text-success"></i>' : '<i class="fa-solid fa-eye-slash fa-lg text-danger"></i>' !!}
+                        </h5>
                         <hr>
                         <p class="card-text">Servizi:</p>
                         <div class="d-flex">
