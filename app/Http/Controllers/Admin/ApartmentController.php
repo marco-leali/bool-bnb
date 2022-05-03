@@ -54,7 +54,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 
         $request->validate([
             'title_desc' => 'required|string|min:5|max:255',
@@ -76,10 +76,10 @@ class ApartmentController extends Controller
 
         $data = $request->all();
 
-         
 
-      
-        
+
+
+
         $data['user_id'] = Auth::id();
         $apartment = Apartment::create($data);
 
@@ -94,8 +94,8 @@ class ApartmentController extends Controller
             'municipality' => $data['city'],
             'postalCode' => $data['postal_code'],
             'key' => 'IKVotV9Xwnzy8UimnZdGePT1sU3HI33N',
-          
-        ]); 
+
+        ]);
 
         $data['latitude'] = $response->json()['results'][0]['position']['lat'];
         $data['longitude'] = $response->json()['results'][0]['position']['lon'];
@@ -113,9 +113,10 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
-        /* $position  = $apartment->position(); */
+        if ($apartment->user_id == Auth::id()) {
 
-        return view('admin.apartments.show', compact('apartment'));
+            return view('admin.apartments.show', compact('apartment'));
+        } else abort(404);
     }
 
     /**
@@ -126,10 +127,13 @@ class ApartmentController extends Controller
      */
     public function edit(Apartment $apartment)
     {
-        $services = Service::all();
-        $current_services = $apartment->services()->pluck('id')->toArray();
+        if ($apartment->user_id == Auth::id()) {
 
-        return view('admin.apartments.edit', compact('apartment', 'services', 'current_services'));
+            $services = Service::all();
+            $current_services = $apartment->services()->pluck('id')->toArray();
+
+            return view('admin.apartments.edit', compact('apartment', 'services', 'current_services'));
+        } else return abort(404);
     }
 
     /**
