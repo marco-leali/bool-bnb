@@ -26,21 +26,21 @@
             
               <li>
                 <Select
-                  placeholder="Raggio"
+                  placeholder="il raggio"
                   :options="optionsKm"
                   :type="km"
                 />
               </li>
               <li class="mx-3">
                 <Select
-                placeholder="Letti"
+                placeholder="n. letti"
                   :options="optionsBeds"
                   :type="bed"
                 />
               </li>
               <li>
                 <Select
-                placeholder="Bagni"
+                placeholder="n. bagni"
                   :options="optionsBaths"
                   :type="bath"
                 />
