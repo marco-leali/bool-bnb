@@ -100,7 +100,6 @@ export default {
   methods: {
     setValueSelect(value, type) {
       this[type] = value;
-      console.log(value);
     },
   },
 };

@@ -2,7 +2,7 @@
   <div>
     <select
       v-model="selectedValue"
-      @change="$emit('on-selected', [selectedValue, type])"
+      @change="$emit('on-selected', selectedValue, type)"
       :id="type"
       class="form-select"
       aria-label="Default select example"
