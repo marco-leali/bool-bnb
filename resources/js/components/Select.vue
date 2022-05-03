@@ -1,7 +1,13 @@
 <template>
   <div>
-    <select name="" id="" class="form-select"  aria-label="Default select example">
-      <option value="">{{ "Seleziona " + placeholder || 'Seleziona' }}</option>
+    <select
+      v-model="selectedValue"
+      @change="$emit('on-selected', [selectedValue, type])"
+      :id="type"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option value="">{{ "Seleziona " + placeholder || "Seleziona" }}</option>
       <option v-for="(option, i) in options" :key="i" :value="option.value">
         {{ option.text }}
       </option>
@@ -12,7 +18,12 @@
 <script>
 export default {
   nome: "Select",
-  props: ["options","type","placeholder"],
+  data() {
+    return {
+      selectedValue: "",
+    };
+  },
+  props: ["options", "type", "placeholder"],
 };
 </script>
 

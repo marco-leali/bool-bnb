@@ -23,29 +23,30 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
               </li>
-            
+
               <li>
                 <Select
                   placeholder="il raggio"
                   :options="optionsKm"
-                  :type="km"
+                  type="km"
                 />
               </li>
               <li class="mx-3">
                 <Select
-                placeholder="n. letti"
+                  @on-selected="setValueSelect"
+                  placeholder="n. letti"
                   :options="optionsBeds"
-                  :type="bed"
+                  type="bed"
                 />
               </li>
               <li>
                 <Select
-                placeholder="n. bagni"
+                  @on-selected="setValueSelect"
+                  placeholder="n. bagni"
                   :options="optionsBaths"
-                  :type="bath"
+                  type="bath"
                 />
               </li>
-
             </ul>
             <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
               <li class="nav-item">
@@ -71,6 +72,8 @@ export default {
   },
   data() {
     return {
+      bed: null,
+      bath: null,
       optionsKm: [
         { text: "20km", value: 20 },
         { text: "30km", value: 30 },
@@ -93,6 +96,12 @@ export default {
         { text: "5 bagni", value: 5 },
       ],
     };
+  },
+  methods: {
+    setValueSelect(value, type) {
+      this[type] = value;
+      console.log(value);
+    },
   },
 };
 </script>
