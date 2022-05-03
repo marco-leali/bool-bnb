@@ -25,7 +25,7 @@
               </li>
               <li>
                 <Select
-                  options="options"
+                  :options="options"
                   
                 />
               </li>
