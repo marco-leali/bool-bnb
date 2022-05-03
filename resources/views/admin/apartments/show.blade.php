@@ -5,7 +5,8 @@
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="{{ $apartment->image }}" class="card-img-top" alt="Immagine Appartamento">
+                    <img src="{{ $apartment->image ?? 'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg' }}"
+                        class="card-img-top" alt="Immagine Appartamento">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">

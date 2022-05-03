@@ -9,7 +9,8 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="text-muted">La tua lista appartamenti</h3>
-            <a class="btn btn-success shadow text-light my-3" href="{{ route('admin.apartments.create') }}">Aggiungi appartamento</a>
+            <a class="btn btn-success shadow text-light my-3" href="{{ route('admin.apartments.create') }}">Aggiungi
+                appartamento</a>
         </div>
 
         <table class="table border shadow text-center">
@@ -37,8 +38,10 @@
                         </td>
                         <td>
                             <a href="{{ route('admin.apartments.show', $apartment->id) }}">
-                                <img class="img-scale" src="{{ $apartment->image }}" alt="immagine appartamento"
-                                    width='50' height='50'>
+                                <img class="img-scale"
+                                    src="{{ $apartment->image ?? 'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg' }}"
+                                    alt="immagine appartamento" width='50' height='50'>
+
                             </a>
                         </td>
                         <td>{{ Str::limit($apartment->title_desc, 10) }}</td>
