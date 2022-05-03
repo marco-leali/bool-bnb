@@ -23,6 +23,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
               </li>
+              <li>
+                <Select
+                  options="options"
+                  
+                />
+              </li>
             </ul>
             <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
               <li class="nav-item">
@@ -40,8 +46,23 @@
 </template>
 
 <script>
+import Select from "../components/Select.vue";
 export default {
   name: "Header",
+  components: {
+    Select,
+  },
+  data() {
+    return {
+      options: [
+        { text: "20km", value: 20 },
+        { text: "30km", value: 30 },
+        { text: "50km", value: 50 },
+        { text: "100km", value: 100 },
+        { text: "200km", value: 200 },
+      ],
+    };
+  },
 };
 </script>
 
