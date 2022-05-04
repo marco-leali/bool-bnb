@@ -1,5 +1,12 @@
 <template>
   <section>
+    
+      <div class="px-5">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Location" v-model="dist">
+              <button class="btn btn-outline-secondary" type="button" id="search" @click="searchByLocation">Cerca Per Location</button>
+            </div>
+      </div>
     <div class="d-flex p-5">
       <Select placeholder="il raggio" :options="optionsKm" type="km" />
       <Select
@@ -37,6 +44,7 @@ export default {
     return {
       isLoading: false,
       apartments: [],
+      dist:null,
       bed: null,
       room: null,
       optionsKm: [
@@ -63,6 +71,55 @@ export default {
     };
   },
   methods: {
+    searchByLocation()
+    { 
+      const config = {
+        params: {
+          countryCode:'IT',
+          municipality : this.dist,
+          key : 'IKVotV9Xwnzy8UimnZdGePT1sU3HI33N'
+        },
+      };
+       axios
+          .get("https://api.tomtom.com/search/2/structuredGeocode", config)
+          .then((res) => {
+            
+            console.log(res.data);
+           
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+          .then(() => {
+            console.log("chiamata terminata");
+          });
+
+    },
+    distance(lat1, lon1, lat2, lon2, unit)
+     {
+              if ((lat1 == lat2) && (lon1 == lon2)) {
+                return 0;
+              }
+              else {
+
+                  var radlat1 = Math.PI * lat1/180;
+                  var radlat2 = Math.PI * lat2/180;
+                  var theta = lon1-lon2;
+                  var radtheta = Math.PI * theta/180;
+                  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                  if (dist > 1) {
+                    dist = 1;
+                  }
+                  dist = Math.acos(dist);
+                  dist = dist * 180/Math.PI;
+                  dist = dist * 60 * 1.1515;
+                  if (unit=="K") { dist = dist * 1.609344 }
+                  if (unit=="N") { dist = dist * 0.8684 }
+
+                return dist;
+              }
+  },
+
     setValueSelect(value, type) {
       this[type] = value;
     },
@@ -81,6 +138,7 @@ export default {
         axios
           .get("http://127.0.0.1:8000/api/apartments", config)
           .then((res) => {
+            
             this.apartments = res.data.data;
           })
           .catch((err) => {
