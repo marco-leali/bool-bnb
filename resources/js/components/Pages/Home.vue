@@ -47,6 +47,8 @@ export default {
       dist:null,
       bed: null,
       room: null,
+      lat:null,
+      long:null,
       optionsKm: [
         { text: "20km", value: 20 },
         { text: "30km", value: 30 },
@@ -71,6 +73,7 @@ export default {
     };
   },
   methods: {
+
     searchByLocation()
     { 
       const config = {
@@ -85,8 +88,9 @@ export default {
        axios.get("https://api.tomtom.com/search/2/structuredGeocode.json",config)
           .then((res) => {
             
-            console.log(res.data);
-           
+            this.lat = res.data.results[0].position.lat;
+            this.long = res.data.results[0].position.lon;
+
           })
           .catch((err) => {
             console.error(err);
@@ -139,8 +143,9 @@ export default {
         axios
           .get("http://127.0.0.1:8000/api/apartments", config)
           .then((res) => {
+        
+               this.apartments = res.data.data; 
             
-            this.apartments = res.data.data;
           })
           .catch((err) => {
             console.error(err);
