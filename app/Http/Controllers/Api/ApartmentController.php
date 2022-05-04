@@ -28,7 +28,7 @@ class ApartmentController extends Controller
             ['room', '>=', +$room], ['bed', '>=', +$bed]
         ]);
 
-        $apartments = $query->paginate(10);
+        $apartments = $query->paginate(5);
 
         if (!$apartments) return response('NOT FOUND', 404);
 

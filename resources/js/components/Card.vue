@@ -1,28 +1,37 @@
 <template>
-  <section id="detail-apartment" class="container my-5">
-    <div class="card-wrapper">
-      <div class="card position-relative">
-        <div class="featured lh-lg">
-          Sponsorizzato <i class="fa-solid fa-circle-check"></i>
-        </div>
+  <section id="detail-apartment" class="container-fluid my-5 p-5">
+    <!-- Card -->
+    <div class="row g-5">
+      <div
+        class="col-sm-12 col-md-6 col-lg-4 col-xl-3"
+        v-for="item in items"
+        :key="item.id"
+      >
+        <div class="card position-relative px-0">
+          <div class="featured lh-lg">
+            Sponsorizzato <i class="fa-solid fa-circle-check"></i>
+          </div>
 
-        <img
-          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/5b/2c/f1/adina-apartment-hotel.jpg?w=900&h=-1&s=1"
-          alt=""
-        />
-        <p class="mt-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic possimus
-          minus ex nobis, nihil labore optio quidem, modi tempora excepturi
-          eaque cupiditate laborum ad eum corporis ut? Eos, doloremque incidunt.
-        </p>
-        <div class="d-flex justify-content-between">
-          <p><strong>Stanze: </strong> 2</p>
-          <p><strong>Bagni: </strong> 2</p>
-          <p><strong>Letti:</strong> 2</p>
-          <p><strong>Metri quadrati:</strong> 50</p>
-        </div>
+          <img
+            :src="
+              item.image ||
+              'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg'
+            "
+            :alt="item.title_desc"
+          />
 
-        <a href="#" class="btn btn-sm btn-secondary mt-3">Scopri di più</a>
+          <p class="mt-4">
+            {{ item.title_desc }}
+          </p>
+          <div class="d-flex justify-content-between">
+            <p><strong>Stanze: </strong> {{ item.room }}</p>
+            <p><strong>Bagni: </strong> {{ item.bathroom }}</p>
+            <p><strong>Letti:</strong> {{ item.bed }}</p>
+            <p><strong>Metri quadrati:</strong> {{ item.square_meters }}</p>
+          </div>
+
+          <a href="#" class="btn btn-sm btn-secondary mt-3">Scopri di più</a>
+        </div>
       </div>
     </div>
   </section>
@@ -31,6 +40,7 @@
 <script>
 export default {
   name: "Card",
+  props: ["items"],
 };
 </script>
 
@@ -53,6 +63,7 @@ export default {
   img {
     border-radius: 0.5rem 0.5rem 0 0;
     width: 100%;
+    height: 380px;
     mix-blend-mode: var(--card-blend-mode);
 
     ~ * {
