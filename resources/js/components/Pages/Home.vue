@@ -1,18 +1,21 @@
 <template>
   <section>
-    <Select placeholder="il raggio" :options="optionsKm" type="km" />
-    <Select
-      @on-selected="getApartments"
-      placeholder="n. letti"
-      :options="optionsBeds"
-      type="bed"
-    />
-    <Select
-      @on-selected="getApartments"
-      placeholder="n. stanze"
-      :options="optionsRooms"
-      type="room"
-    />
+    <div class="d-flex p-5">
+      <Select placeholder="il raggio" :options="optionsKm" type="km" />
+      <Select
+        @on-selected="getApartments"
+        placeholder="n. letti"
+        :options="optionsBeds"
+        type="bed"
+      />
+      <Select
+        @on-selected="getApartments"
+        placeholder="n. stanze"
+        :options="optionsRooms"
+        type="room"
+      />
+    </div>
+    
     <Card v-if="!isLoading" :items="apartments" />
     <PlaceholderCard v-else />
   </section>
