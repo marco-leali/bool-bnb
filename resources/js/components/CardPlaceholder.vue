@@ -3,7 +3,7 @@
     <!-- Placeholder -->
     <div class="row g-5">
       <div
-        v-for="(placeholder, i) in 8"
+        v-for="(placeholder, i) in 4"
         :key="i"
         class="col-sm-12 col-md-6 col-lg-4 col-xl-3"
       >
