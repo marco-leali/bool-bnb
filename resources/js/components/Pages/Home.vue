@@ -80,8 +80,9 @@ export default {
           key : 'IKVotV9Xwnzy8UimnZdGePT1sU3HI33N'
         },
       };
-       axios
-          .get("https://api.tomtom.com/search/2/structuredGeocode", config)
+    
+       delete axios.defaults.headers.common['X-Requested-With'];
+       axios.get("https://api.tomtom.com/search/2/structuredGeocode.json",config)
           .then((res) => {
             
             console.log(res.data);
