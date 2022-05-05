@@ -1,14 +1,30 @@
 <template>
   <section>
-    
-      <div class="px-5">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Location" v-model="dist">
-              <button class="btn btn-outline-secondary" type="button" id="search" @click="searchByLocation">Cerca Per Location</button>
-            </div>
+    <div class="px-5">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Location"
+          v-model="dist"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          id="search"
+          @click="searchByLocation"
+        >
+          Cerca Per Location
+        </button>
       </div>
+    </div>
     <div class="d-flex p-5">
-      <Select @on-selected="getApartments" placeholder="il raggio" :options="optionsKm" type="radius" />
+      <Select
+        @on-selected="getApartments"
+        placeholder="il raggio"
+        :options="optionsKm"
+        type="radius"
+      />
       <Select
         @on-selected="getApartments"
         placeholder="n. letti"
@@ -22,7 +38,7 @@
         type="room"
       />
     </div>
-    
+
     <Card v-if="!isLoading" :items="apartments" />
     <PlaceholderCard v-else />
   </section>
@@ -44,12 +60,12 @@ export default {
     return {
       isLoading: false,
       apartments: [],
-      dist:null,
+      dist: null,
       bed: null,
       room: null,
-      lat:null,
-      long:null,
-      radius:20,
+      lat: null,
+      long: null,
+      radius: 20,
       optionsKm: [
         { text: "20km", value: 20 },
         { text: "30km", value: 30 },
@@ -74,59 +90,58 @@ export default {
     };
   },
   methods: {
-
-    searchByLocation()
-    { 
+    searchByLocation() {
       const config = {
         params: {
-          countryCode:'IT',
-          municipality : this.dist,
-          key : 'IKVotV9Xwnzy8UimnZdGePT1sU3HI33N'
+          countryCode: "IT",
+          municipality: this.dist,
+          key: "IKVotV9Xwnzy8UimnZdGePT1sU3HI33N",
         },
       };
-    
-       delete axios.defaults.headers.common['X-Requested-With'];
-       axios.get("https://api.tomtom.com/search/2/structuredGeocode.json",config)
-          .then((res) => {
-            
-            this.lat = res.data.results[0].position.lat;
-            this.long = res.data.results[0].position.lon;
 
-            this.getApartments(this.radius,'radius');
+      delete axios.defaults.headers.common["X-Requested-With"];
+      axios
+        .get("https://api.tomtom.com/search/2/structuredGeocode.json", config)
+        .then((res) => {
+          this.lat = res.data.results[0].position.lat;
+          this.long = res.data.results[0].position.lon;
 
-          })
-          .catch((err) => {
-            console.error(err);
-          })
-          .then(() => {
-            console.log("chiamata terminata LatLong");
-          });
-
+          this.getApartments(this.radius || 20, "radius");
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .then(() => {
+          console.log("chiamata terminata LatLong");
+        });
     },
-    distance(lat1, lon1, lat2, lon2, unit)
-     {
-              if ((lat1 == lat2) && (lon1 == lon2)) {
-                return 0;
-              }
-              else {
+    distance(lat1, lon1, lat2, lon2, unit) {
+      if (lat1 == lat2 && lon1 == lon2) {
+        return 0;
+      } else {
+        var radlat1 = (Math.PI * lat1) / 180;
+        var radlat2 = (Math.PI * lat2) / 180;
+        var theta = lon1 - lon2;
+        var radtheta = (Math.PI * theta) / 180;
+        var dist =
+          Math.sin(radlat1) * Math.sin(radlat2) +
+          Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+          dist = 1;
+        }
+        dist = Math.acos(dist);
+        dist = (dist * 180) / Math.PI;
+        dist = dist * 60 * 1.1515;
+        if (unit == "K") {
+          dist = dist * 1.609344;
+        }
+        if (unit == "N") {
+          dist = dist * 0.8684;
+        }
 
-                  var radlat1 = Math.PI * lat1/180;
-                  var radlat2 = Math.PI * lat2/180;
-                  var theta = lon1-lon2;
-                  var radtheta = Math.PI * theta/180;
-                  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-                  if (dist > 1) {
-                    dist = 1;
-                  }
-                  dist = Math.acos(dist);
-                  dist = dist * 180/Math.PI;
-                  dist = dist * 60 * 1.1515;
-                  if (unit=="K") { dist = dist * 1.609344 }
-                  if (unit=="N") { dist = dist * 0.8684 }
-
-                return dist;
-              }
-  },
+        return dist;
+      }
+    },
 
     setValueSelect(value, type) {
       this[type] = value;
@@ -143,40 +158,34 @@ export default {
         },
       };
 
-        axios
-          .get("http://127.0.0.1:8000/api/apartments", config)
-          .then((res) => {
-        
-            const apartments = res.data.data;
-            if(this.lat && this.long)
-            {
-              this.apartments = apartments.filter(apartment =>{
+      axios
+        .get("http://127.0.0.1:8000/api/apartments", config)
+        .then((res) => {
+          const apartments = res.data.data;
+          if (this.lat && this.long) {
+            this.apartments = apartments.filter((apartment) => {
+              const lat = apartment.position.latitude;
+              const long = apartment.position.longitude;
 
-                  const lat = apartment.position.latitude;
-                  const long = apartment.position.longitude;
-              
-                  if(this.distance(lat,long,this.lat,this.long,'K') < this.radius)
-                  { 
-                    return true;
-                  }
-                  
-                  return false; 
+              if (
+                this.distance(lat, long, this.lat, this.long, "K") < this.radius
+              ) {
+                return true;
+              }
 
-              });    
-            }
-            else
-            { 
-              this.apartments = res.data.data; 
-            }
-            
-          })
-          .catch((err) => {
-            console.error(err);
-          })
-          .then(() => {
-            console.log("chiamata terminata Appartamenti");
-            this.isLoading = false;
-          });
+              return false;
+            });
+          } else {
+            this.apartments = res.data.data;
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .then(() => {
+          console.log("chiamata terminata Appartamenti");
+          this.isLoading = false;
+        });
     },
   },
   mounted() {

@@ -6,7 +6,9 @@
     class="form-select"
     aria-label="Default select example"
   >
-    <option value="">{{ "Seleziona " + placeholder || "Seleziona" }}</option>
+    <option selected value="">
+      {{ "Seleziona " + placeholder || "Seleziona" }}
+    </option>
     <option v-for="(option, i) in options" :key="i" :value="option.value">
       {{ option.text }}
     </option>
