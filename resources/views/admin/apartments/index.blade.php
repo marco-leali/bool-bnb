@@ -33,7 +33,8 @@
                 @forelse ($apartments as $apartment)
                     <tr class="align-middle">
                         <td>
-                            <a href="#" class="btn btn-small btn-outline-secondary rounded-circle" title="Sponsorizza ora"><i
+                            <a href="{{ route('admin.packs.show', $apartment) }}"
+                                class="btn btn-small btn-outline-secondary rounded-circle" title="Sponsorizza ora"><i
                                     class="fa-solid fa-chart-line"></i></a>
                         </td>
                         <td>

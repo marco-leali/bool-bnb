@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Apartment;
 use App\Models\Pack;
 use Illuminate\Http\Request;
 
@@ -39,7 +39,7 @@ class PackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -48,9 +48,10 @@ class PackController extends Controller
      * @param  \App\Models\Pack  $pack
      * @return \Illuminate\Http\Response
      */
-    public function show(Pack $pack)
+    public function show(Apartment $apartment)
     {
-        //
+        $packs = Pack::all();
+        return view('admin.packs.show', compact('packs', 'apartment'));
     }
 
     /**
