@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">BoolBnB</a>
+          <a class="navbar-brand" href="#"><img src="http://www.mattonsbnb.com/wp-content/uploads/2016/04/cropped-icon-1.png" width="50" alt=""> BoolBnB</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -29,7 +29,7 @@
                 <a class="nav-link" href="/login">Login</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/register">Registrati</a>
+                <a class="nav-link btn btn-secondary mx-3 text-light" href="/register">Registrati</a>
               </li>
             </ul>
           </div>
