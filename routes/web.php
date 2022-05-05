@@ -24,9 +24,11 @@ Route::middleware('auth')
         Route::get('/apartments/{apartment}/messages', 'ApartmentController@showMessages')->name('apartments.show-messages');
         Route::get('/', 'HomeController@index');
         Route::resource('/apartments', 'ApartmentController');
+        Route::get('/packs/{apartment}', 'PackController@show');
         Route::resource('/packs', 'PackController');
     });
 
+Route::get('/payment/process', 'PaymentsController@process')->name('payment.process');
 
 Route::get('{any?}', function () {
     return view('guest.home');
