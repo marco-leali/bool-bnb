@@ -5,7 +5,8 @@ Vue.use(VueRouter)
 
 //importo i componenti
 
-import Home from './components/Pages/Home.vue';
+import HomePage from './components/Pages/HomePage.vue';
+import ApartmentsSearch from './components/Pages/Apartments/ApartmentsSearch.vue';
 
 
 
@@ -13,7 +14,8 @@ const router = new VueRouter({
     mode: 'history',
     linkExactActiveClass: 'active',
     routes: [
-        { path: '/', component: Home, name: 'Home' },
+        { path: '/', component: HomePage, name: 'HomePage' },
+        { path: '/apartments-search', component: ApartmentsSearch, name: 'ApartmentsSearch' }
         /* { path: '*', component: NotFound }, */
     ],
 })

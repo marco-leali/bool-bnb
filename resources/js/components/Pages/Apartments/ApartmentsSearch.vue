@@ -29,10 +29,10 @@
 </template>
 
 <script>
-import Card from "../Card.vue";
-import PlaceholderCard from "../CardPlaceholder.vue";
+import Card from "../../Card.vue";
+import PlaceholderCard from "../../CardPlaceholder.vue";
 
-import Select from "../Select.vue";
+import Select from "../../Select.vue";
 export default {
   name: "Home",
   components: {
