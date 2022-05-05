@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
 use App\Models\Pack;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PackController extends Controller
@@ -39,7 +40,18 @@ class PackController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+
+        $apartment = Apartment::find($data['apartment_id']);
+        $pack = Pack::find($data['pack_id']);
+
+        $time = Carbon::now()->addHours($data['time']);
+
+        if ($apartment->packs) $apartment->packs()->detach();
+
+        $apartment->packs()->attach($pack, ['expire' => $time]);
+
+        return redirect()->route('admin.apartments.index')->with('message', "L'Appartamento: <strong>$apartment->title_desc</strong> è stato sponsorizzato per $pack->time ore");
     }
 
     /**

@@ -10,7 +10,7 @@ class Apartment extends Model
     protected $fillable = [
         'user_id', 'title_desc', 'image', 'room', 'bathroom', 'bed', 'square_meters', 'visible'
     ];
-    
+
 
     public function user()
     {
@@ -39,6 +39,6 @@ class Apartment extends Model
 
     public function packs()
     {
-        return $this->belongsToMany('App\Models\Pack');
+        return $this->belongsToMany('App\Models\Pack')->withTimestamps()->withPivot('expire');
     }
 }

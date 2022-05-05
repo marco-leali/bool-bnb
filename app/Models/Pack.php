@@ -14,6 +14,6 @@ class Pack extends Model
     {
 
 
-        return $this->belongsToMany('App\Models\Apartment')->withTimestamps()->withPivot('expire');
+        return $this->belongsToMany('App\Models\Apartment');
     }
 }
