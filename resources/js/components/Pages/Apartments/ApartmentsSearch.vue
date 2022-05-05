@@ -8,7 +8,7 @@
             </div>
       </div>
     <div class="d-flex p-5">
-      <Select placeholder="il raggio" :options="optionsKm" type="km" />
+      <Select @on-selected="getApartments" placeholder="il raggio" :options="optionsKm" type="radius" />
       <Select
         @on-selected="getApartments"
         placeholder="n. letti"
@@ -49,6 +49,7 @@ export default {
       room: null,
       lat:null,
       long:null,
+      radius:20,
       optionsKm: [
         { text: "20km", value: 20 },
         { text: "30km", value: 30 },
@@ -91,12 +92,14 @@ export default {
             this.lat = res.data.results[0].position.lat;
             this.long = res.data.results[0].position.lon;
 
+            this.getApartments(this.radius,'radius');
+
           })
           .catch((err) => {
             console.error(err);
           })
           .then(() => {
-            console.log("chiamata terminata");
+            console.log("chiamata terminata LatLong");
           });
 
     },
@@ -139,22 +142,41 @@ export default {
           page,
         },
       };
-      setTimeout(() => {
+
         axios
           .get("http://127.0.0.1:8000/api/apartments", config)
           .then((res) => {
         
-               this.apartments = res.data.data; 
+            const apartments = res.data.data;
+            if(this.lat && this.long)
+            {
+              this.apartments = apartments.filter(apartment =>{
+
+                  const lat = apartment.position.latitude;
+                  const long = apartment.position.longitude;
+              
+                  if(this.distance(lat,long,this.lat,this.long,'K') < this.radius)
+                  { 
+                    return true;
+                  }
+                  
+                  return false; 
+
+              });    
+            }
+            else
+            { 
+              this.apartments = res.data.data; 
+            }
             
           })
           .catch((err) => {
             console.error(err);
           })
           .then(() => {
-            console.log("chiamata terminata");
+            console.log("chiamata terminata Appartamenti");
             this.isLoading = false;
           });
-      }, 2000);
     },
   },
   mounted() {

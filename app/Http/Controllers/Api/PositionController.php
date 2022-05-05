@@ -3,36 +3,28 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Apartment;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
-class ApartmentController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
         //controllo se nella query ci sono le selezioni
 
-        $room = $request->query('room') ?? null;
-        $bed = $request->query('bed') ?? null;
+        $apartment_id = $request->query('apartment_id') ?? null;
 
-        $query = Apartment::orderBy('created_at', 'DESC')->where('visible', 1);
+        $query = Position::where('apartment_id', '=',$apartment_id)->first();
 
-        if ($room && !$bed) $query->where('room', '>=', +$room);
-        else if ($bed && !$room) $query->where('bed', '>=', +$bed);
-        else if ($room && $bed) $query->where([
-            ['room', '>=', +$room], ['bed', '>=', +$bed]
-        ]);
+        if (!$query) return response('NOT FOUND', 404);
 
-        $apartments = $query->with('position')->paginate(4);
-
-        if (!$apartments) return response('NOT FOUND', 404);
-
-        return response()->json($apartments);
+         return response()->json($query); 
     }
 
     /**
