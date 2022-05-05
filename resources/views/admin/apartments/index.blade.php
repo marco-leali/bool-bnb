@@ -3,7 +3,7 @@
     <div class="container my-5">
         @if (session('message'))
             <div class="alert alert-success">
-                {{ session('message') }}
+                {!! session('message') !!}
             </div>
         @endif
 
@@ -16,7 +16,7 @@
         <table class="table border shadow text-center">
             <thead>
                 <tr>
-                    <th scope="col">Promuovi</th>
+                    <th scope="col">Sponsor</th>
                     <th scope="col">Immagine</th>
                     <th scope="col">Appartamento</th>
                     <th scope="col">Stanze</th>
@@ -33,9 +33,22 @@
                 @forelse ($apartments as $apartment)
                     <tr class="align-middle">
                         <td>
-                            <a href="{{ route('admin.packs.show', $apartment) }}"
-                                class="btn btn-small btn-outline-secondary rounded-circle" title="Sponsorizza ora"><i
-                                    class="fa-solid fa-chart-line"></i></a>
+                            @forelse ($apartment->packs as $pack)
+                                @if (\Carbon\Carbon::now() <= $pack->pivot->expire)
+                                    <button class="btn btn-outline-secondary rounded-circle" title="{{ $pack->name }}"><i
+                                            class="fa-solid fa-medal @if ($pack->name == 'Gold') text-warning 
+                                        @elseif ($pack->name == 'Bronze') text-danger @endif"></i></button>
+                                @else
+                                    <a href="{{ route('admin.packs.show', $apartment) }}"
+                                        class="btn btn-outline-secondary rounded-circle" title="Rinnova ora"><i
+                                            class="fa-solid fa-arrows-rotate text-info"></i></a>
+                                @endif
+                            @empty
+                                <a href="{{ route('admin.packs.show', $apartment) }}"
+                                    class="btn btn-outline-secondary rounded-circle" title="Sponsorizza ora"><i
+                                        class="fa-solid fa-chart-line"></i></a>
+                            @endforelse
+
                         </td>
                         <td>
                             <a href="{{ route('admin.apartments.show', $apartment->id) }}">
