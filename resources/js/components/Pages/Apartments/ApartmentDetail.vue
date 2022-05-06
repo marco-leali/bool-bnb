@@ -54,10 +54,7 @@ export default {
 <style scoped lang="scss">
 #apartment-detail{
     height: 70vh;
-
-
-
-
+    
 .featured {
   position: absolute;
   transform: rotate(45deg);

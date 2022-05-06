@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Position;
+use App\Models\Apartment;
 use Illuminate\Http\Request;
 
-class PositionController extends Controller
+class SingleApartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +18,9 @@ class PositionController extends Controller
     {
         //controllo se nella query ci sono le selezioni
 
-        $apartment_id = $request->query('apartment_id') ?? null;
+        $apartment_id = $request->query('id') ?? null;
 
-        $query = Position::where('apartment_id', '=',$apartment_id)->first();
+        $query = Apartment::where('id', $apartment_id)->first();
 
         if (!$query) return response('NOT FOUND', 404);
 

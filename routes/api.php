@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/apartments', 'Api\ApartmentController@index');
-Route::get('/positions', 'Api\PositionController@index');
+Route::get('/apartment', 'Api\SingleApartmentController@index');
