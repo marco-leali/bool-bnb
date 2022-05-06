@@ -35,7 +35,11 @@
                   <p><strong>Stanze</strong> {{ apartment.room }}</p>
                   <p><strong>Letti</strong>  {{ apartment.bed }}</p>
                   <p><strong>Bagni</strong>  {{ apartment.bathroom }}</p>
+                  <router-link class="btn btn-sm bg-secondary text-light" :to="{name: 'FormMessage', params:{ id: apartment.id } }">Scrimi per ulteriori dettagli</router-link>
                 </div>
+              </div>
+              <div class="col-12">
+                <FormMessage :apartment-id="apartment.id" />
               </div>
             </div>
           </div>
@@ -46,8 +50,12 @@
 </template>
 
 <script>
+import FormMessage from '../FormMessage.vue'
 export default {
   name: "ApartmentDetail",
+  components:{
+    FormMessage
+  },
   data(){
     return{
       apartment: [],

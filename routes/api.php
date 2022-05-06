@@ -20,3 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/apartments', 'Api\ApartmentController@index');
 Route::get('/apartment/{id}', 'Api\ApartmentController@show');
+
+/* api per i messaggi */
+Route::post('/message', 'Api\MessageApartmentController@send');
