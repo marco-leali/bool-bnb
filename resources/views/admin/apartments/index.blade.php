@@ -35,9 +35,21 @@
                         <td>
                             @forelse ($apartment->packs as $pack)
                                 @if (\Carbon\Carbon::now() <= $pack->pivot->expire)
-                                    <button class="btn btn-outline-secondary rounded-circle" title="{{ $pack->name }}"><i
-                                            class="fa-solid fa-medal @if ($pack->name == 'Gold') text-warning 
-                                        @elseif ($pack->name == 'Bronze') text-danger @endif"></i></button>
+                                    <div class="btn-group dropstart">
+                                        <button type="button" class="btn btn-outline-secondary rounded-circle"
+                                            data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                class="fa-solid fa-medal @if ($pack->name == 'Gold') text-warning 
+                                    @elseif ($pack->name == 'Bronze') text-danger @endif"></i></button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <p class="dropdown-item m-0">Scadenza:
+                                                    {{ date('F j Y g:i a', strtotime($pack->pivot->expire)) }}</p>
+                                            </li>
+                                            <li>
+                                                <p class="dropdown-item m-0">Pacchetto {{ $pack->name }}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 @else
                                     <a href="{{ route('admin.packs.show', $apartment) }}"
                                         class="btn btn-outline-secondary rounded-circle" title="Rinnova ora"><i
