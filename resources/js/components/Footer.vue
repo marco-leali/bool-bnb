@@ -40,7 +40,7 @@ export default {
 <style scoped lang="scss">
 footer{
     background: lightgray;
-   /*  height: 30vh; */
+     height: 30vh; 
     padding: 25px; 
 
     .pad{
