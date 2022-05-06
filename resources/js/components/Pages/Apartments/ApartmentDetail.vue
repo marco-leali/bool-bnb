@@ -12,8 +12,9 @@
                 </div>
                 <img
                   :src="apartment.image || 'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg'"
-                  class="img-fluid rounded-start"
+                  class="img-fluid rounded-start w-100"
                   alt="..."
+
                 />
               </div>
               <div class="col-sm-12 col-md-12 col-lg-4">
