@@ -4,8 +4,8 @@
     <div class="row g-5">
       <div
         class="col-sm-12 col-md-6 col-lg-4 col-xl-3"
-        v-for="item in items"
-        :key="item.id"
+        v-for="apartment in items"
+        :key="apartment.id"
       >
         <div class="card position-relative px-0">
           <div class="featured lh-lg">
@@ -14,23 +14,23 @@
 
           <img
             :src="
-              item.image ||
+              apartment.image ||
               'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg'
             "
-            :alt="item.title_desc"
+            :alt="apartment.title_desc"
           />
 
           <p class="mt-4">
-            {{ item.title_desc }}
+            {{ apartment.title_desc }}
           </p>
           <div class="d-flex justify-content-between">
-            <p><strong>Stanze: </strong> {{ item.room }}</p>
-            <p><strong>Bagni: </strong> {{ item.bathroom }}</p>
-            <p><strong>Letti:</strong> {{ item.bed }}</p>
-            <p><strong>Metri quadrati:</strong> {{ item.square_meters }}</p>
+            <p><strong>Stanze: </strong> {{ apartment.room }}</p>
+            <p><strong>Bagni: </strong> {{ apartment.bathroom }}</p>
+            <p><strong>Letti:</strong> {{ apartment.bed }}</p>
+            <p><strong>Metri quadrati:</strong> {{ apartment.square_meters }}</p>
           </div>
 
-          <a href="#" class="btn btn-sm btn-secondary mt-3">Scopri di più</a>
+          <router-link :to="{name: 'ApartmentDetail', params:{ id: apartment.id , apartment: apartment  } }" class="btn btn-sm btn-secondary mt-3">Scopri di più</router-link>
         </div>
       </div>
     </div>
