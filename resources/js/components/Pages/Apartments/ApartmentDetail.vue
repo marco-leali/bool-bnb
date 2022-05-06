@@ -6,12 +6,12 @@
           <!-- card -->
           <div class="card shadow mb-3" style="max-width: 80rem">
             <div class="row g-0">
-              <div class="col-sm-12 col-md-12 col-lg-8 position-relative  overflow-hidden">
+              <div class="col-sm-12 col-md-12 col-lg-8 position-relative  overflow-hidden p-0 m-0">
                 <div class="featured lh-lg">
                   Sponsorizzato <i class="fa-solid fa-circle-check"></i>
                 </div>
                 <img
-                  src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/5b/2c/f1/adina-apartment-hotel.jpg?w=900&h=-1&s=1"
+                  :src="apartment.image || 'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg'"
                   class="img-fluid rounded-start"
                   alt="..."
                 />
@@ -28,12 +28,12 @@
                   </div>
                   <hr />
                   <p>
-                    <strong>Descrizione appartamento: </strong> 
+                    <strong>Descrizione appartamento: </strong> {{ apartment.title_desc }}
                   </p>
-                  <p><strong>Metri Quadrati</strong> </p>
-                  <p><strong>Stanze</strong> </p>
-                  <p><strong>Letti</strong>  </p>
-                  <p><strong>Bagni</strong>  </p>
+                  <p class="fs-4"><strong>Metri Quadrati: </strong> {{ apartment.square_meters }}</p>
+                  <p><strong>Stanze</strong> {{ apartment.room }}</p>
+                  <p><strong>Letti</strong>  {{ apartment.bed }}</p>
+                  <p><strong>Bagni</strong>  {{ apartment.bathroom }}</p>
                 </div>
               </div>
             </div>
@@ -47,7 +47,6 @@
 <script>
 export default {
   name: "ApartmentDetail",
-  props: ['apartment'],
   data(){
     return{
       apartment: [],
@@ -55,9 +54,10 @@ export default {
   },
   methods:{
     getApartment(){
+
       axios.get('http://localhost:8000/api/apartment/'+ this.$route.params.id).then((res) => {
           this.apartment = res.data;
-          console.log(this.apartment);
+          console.log(res.data);
         })
         .catch((err) => {
           console.error(err);

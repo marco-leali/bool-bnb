@@ -54,7 +54,15 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+         //controllo se nella query ci sono le selezioni
+
+      
+
+         $query = Apartment::where('id', $id)->first();
+ 
+         if (!$query) return response('NOT FOUND', 404);
+ 
+          return response()->json($query); 
     }
 
     /**

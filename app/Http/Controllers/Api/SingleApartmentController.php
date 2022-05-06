@@ -16,15 +16,7 @@ class SingleApartmentController extends Controller
 
     public function index(Request $request)
     {
-        //controllo se nella query ci sono le selezioni
-
-        $apartment_id = $request->query('id') ?? null;
-
-        $query = Apartment::where('id', $apartment_id)->first();
-
-        if (!$query) return response('NOT FOUND', 404);
-
-         return response()->json($query); 
+       
     }
 
     /**
