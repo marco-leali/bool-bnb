@@ -8,6 +8,7 @@ Vue.use(VueRouter)
 import HomePage from './components/Pages/HomePage.vue';
 import ApartmentsSearch from './components/Pages/Apartments/ApartmentsSearch.vue';
 import ApartmentDetail from './components/Pages/Apartments/ApartmentDetail.vue';
+import FormMessage from './components/Pages/FormMessage.vue';
 
 
 
@@ -18,6 +19,7 @@ const router = new VueRouter({
         { path: '/', component: HomePage, name: 'HomePage' },
         { path: '/apartments', component: ApartmentsSearch, name: 'ApartmentsSearch' },
         { path: '/apartments/:id', component: ApartmentDetail, name: 'ApartmentDetail' },
+        { path: '/contact/:id', component: FormMessage, name: 'FormMessage' }
         /* { path: '*', component: NotFound }, */
     ],
 })
