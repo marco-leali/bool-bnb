@@ -47,7 +47,29 @@
 <script>
 export default {
   name: "ApartmentDetail",
-  props: ['apartment']
+  props: ['apartment'],
+  data(){
+    return{
+      apartment: [],
+    }
+  },
+  methods:{
+    getApartment(){
+      axios.get('http://localhost:8000/api/apartment/'+ this.$route.params.id).then((res) => {
+          this.apartment = res.data;
+          console.log(this.apartment);
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .then(() => {
+          console.log("chiamata terminata");
+        });
+    }
+  },
+  mounted(){
+    this.getApartment();
+  }
 };
 </script>
 
