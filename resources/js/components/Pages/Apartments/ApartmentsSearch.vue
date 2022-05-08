@@ -1,42 +1,59 @@
 <template>
   <section>
-    <div class="px-5">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Location"
-          v-model="dist"
-        />
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          id="search"
-          @click="searchByLocation"
-        >
-          Cerca Per Location
-        </button>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          <div id="map" style="width: 100%; height: 400px"></div>
+        </div>
+        <div class="col-6">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Location"
+              v-model="dist"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="search"
+              @click="searchByLocation"
+            >
+              Cerca Per Location
+            </button>
+          </div>
+
+          <div class="col-12 py-4">
+            <Select
+              @on-selected="getApartments"
+              placeholder="il raggio"
+              :options="optionsKm"
+              type="radius"
+            />
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <Select
+                @on-selected="getApartments"
+                placeholder="n. letti"
+                :options="optionsBeds"
+                type="bed"
+              />
+            </div>
+            <div class="col-6">
+              <Select
+                @on-selected="getApartments"
+                placeholder="n. stanze"
+                :options="optionsRooms"
+                type="room"
+              />
+            </div>
+            <div class="col-12 text-center pt-4">
+              <h3>Filtra gli appartamenti per raggio, letti e stanze</h3>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="d-flex p-5">
-      <Select
-        @on-selected="getApartments"
-        placeholder="il raggio"
-        :options="optionsKm"
-        type="radius"
-      />
-      <Select
-        @on-selected="getApartments"
-        placeholder="n. letti"
-        :options="optionsBeds"
-        type="bed"
-      />
-      <Select
-        @on-selected="getApartments"
-        placeholder="n. stanze"
-        :options="optionsRooms"
-        type="room"
-      />
     </div>
 
     <Card v-if="!isLoading" :items="apartments" />
@@ -148,6 +165,8 @@ export default {
     },
 
     getApartments(value, type, page = 1) {
+      // Mappa al caricamento
+
       this.setValueSelect(value, type);
       this.isLoading = true;
       const config = {
@@ -185,7 +204,62 @@ export default {
         .then(() => {
           console.log("chiamata terminata Appartamenti");
           this.isLoading = false;
+          this.getMap();
         });
+    },
+
+    getMap() {
+      if (!this.lat && !this.long) {
+        const map = tt.map({
+          key: "IKVotV9Xwnzy8UimnZdGePT1sU3HI33N",
+          container: "map",
+          center: [12.496366, 41.902782],
+          zoom: 4,
+        });
+        map.addControl(new tt.FullscreenControl());
+        map.addControl(new tt.NavigationControl());
+        var popupOffset = 25;
+        map.on("load", () => {
+          this.apartments.forEach((element) => {
+            var marker = new tt.Marker()
+              .setLngLat([
+                element.position.longitude,
+                element.position.latitude,
+              ])
+              .addTo(map);
+            var popup = new tt.Popup({ offset: popupOffset }).setHTML(
+              `<p class="mt-1">${element.title_desc}</p>
+              <p class="m-0">${element.position.street}</p>`
+            );
+            marker.setPopup(popup);
+          });
+        });
+      } else {
+        const map = tt.map({
+          key: "IKVotV9Xwnzy8UimnZdGePT1sU3HI33N",
+          container: "map",
+          center: [this.long, this.lat],
+          zoom: this.radius > 30 ? 6 : 8,
+        });
+        var popupOffset = 25;
+        map.on("load", () => {
+          this.apartments.forEach((element) => {
+            var marker = new tt.Marker()
+              .setLngLat([
+                element.position.longitude,
+                element.position.latitude,
+              ])
+              .addTo(map);
+            var popup = new tt.Popup({ offset: popupOffset }).setHTML(
+              `<p class="mt-1">${element.title_desc}</p>
+              <p class="m-0">${element.position.street}</p>`
+            );
+            marker.setPopup(popup);
+          });
+        });
+        map.addControl(new tt.FullscreenControl());
+        map.addControl(new tt.NavigationControl());
+      }
     },
   },
   mounted() {
