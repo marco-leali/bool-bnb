@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container my-5">
+    <div class="container">
         @if (session('message'))
             <div class="alert alert-success">
                 {!! session('message') !!}
@@ -13,7 +13,7 @@
                 appartamento</a>
         </div>
 
-        <table class="table border shadow text-center">
+        <table class="table border bg-light shadow text-center">
             <thead>
                 <tr>
                     <th scope="col">Sponsor</th>

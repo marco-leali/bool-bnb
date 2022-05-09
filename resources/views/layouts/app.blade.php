@@ -33,7 +33,69 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <div class="area"></div>
+        <nav class="main-menu">
+            <ul>
+                <li >
+                    <a href="/" class="d-flex align-items-center">
+                        {{-- <i class="fa fa-home fa-2x"></i> --}}
+                        <img src="http://www.mattonsbnb.com/wp-content/uploads/2016/04/cropped-icon-1.png"
+                                width="46" class="mx-2" alt="">
+                        <span class="nav-text ">
+                           <h2 class="fw-bold">BoolBnB</h2>
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav py-3 mt-4">
+                    <a href="{{ url('/admin') }}"><i class="fa-solid fa-house-user fa-2x mx-3"></i>  <h5 class="nav-text">La tua dashboard</h5> </a>
+                </li>
+            </ul>
+            <ul>
+                @if (Auth::user() && Auth::user())
+                    {{-- Benvenuto {{ Auth::user()->name }} {{ Auth::user()->surname }} --}}                   
+                    <li class="has-subnav py-3">
+                        <a href="{{ route('admin.apartments.index') }}">
+                            <i class="fa fa-list fa-2x"></i>
+                            <h5 class="nav-text ">
+                                I tuoi appartamenti
+                            </h5>
+                        </a>
+                    </li>
+                    <li class="has-subnav py-3">
+                        <a href="{{ route('admin.packs.index') }}">
+                            <i class="fa-solid fa-medal fa-2x mx-3"></i>
+                            <h5 class="nav-text">
+                                Sponsorizzazioni
+                            </h5>
+                        </a>
+                    </li>
+                @else
+                     {{ Auth::user() }}
+                @endif
+            </ul>
+            <ul class="logout">
+                @guest
+                    <li class="d-none">
+                        <a href="/login"><i class="fa-solid fa-arrow-right-to-bracket fa-2x ms-3"></i></a>
+                    </li>
+                @else
+                    <li class="text-secondary">
+                        <a class="ms-3 d-flex" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                     document.getElementById('logout-form').submit();">
+                            <i class="fa-solid fa-power-off fa-2x pe-3"></i>
+                            <h5>Esci</h5>
+
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                @endguest
+            </ul>
+        </nav>
+
+
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -86,9 +148,9 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

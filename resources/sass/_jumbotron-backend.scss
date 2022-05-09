@@ -1,0 +1,24 @@
+#jumbotron {
+    background-image: url("https://cdngeneralcf.rentcafe.com/dmslivecafe/2/95513/470%20Manhattan%20Duplex%201600x1050.jpg?crop=(0,0,300,196.8750000000005)&cropxunits=300&cropyunits=197&quality=85&scale=both&");
+    background-size: cover;
+    background-color: aliceblue;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 60vh;
+    &::before {
+        content: "";
+        background-color: rgba(241, 241, 241, 0.582);
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .z-index {
+        z-index: 1;
+    }
+}
