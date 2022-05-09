@@ -8,7 +8,7 @@
         :key="apartment.id"
       >
         <div class="card position-relative px-0">
-          <div class="featured lh-lg">
+          <div v-if="apartment.packs.length" class="featured lh-lg">
             Sponsorizzato <i class="fa-solid fa-circle-check"></i>
           </div>
 
@@ -27,10 +27,19 @@
             <p><strong>Stanze: </strong> {{ apartment.room }}</p>
             <p><strong>Bagni: </strong> {{ apartment.bathroom }}</p>
             <p><strong>Letti:</strong> {{ apartment.bed }}</p>
-            <p><strong>Metri quadrati:</strong> {{ apartment.square_meters }}</p>
+            <p>
+              <strong>Metri quadrati:</strong> {{ apartment.square_meters }}
+            </p>
           </div>
 
-          <router-link :to="{name: 'ApartmentDetail', params:{ id: apartment.id , apartment: apartment  } }" class="btn btn-sm btn-secondary mt-3">Scopri di più</router-link>
+          <router-link
+            :to="{
+              name: 'ApartmentDetail',
+              params: { id: apartment.id, apartment: apartment },
+            }"
+            class="btn btn-sm btn-secondary mt-3"
+            >Scopri di più</router-link
+          >
         </div>
       </div>
     </div>
