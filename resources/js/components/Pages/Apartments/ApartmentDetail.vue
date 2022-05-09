@@ -4,7 +4,10 @@
       <div class="row h-100">
         <div class="col-12 d-flex align-items-center justify-content-center">
           <!-- card -->
-          <div class="card shadow mb-3" style="max-width: 80rem">
+          <div v-if="isLoading" class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div v-else class="card shadow mb-3" style="max-width: 80rem">
             <div class="row g-0">
               <div
                 class="
@@ -15,7 +18,7 @@
                   m-0
                 "
               >
-                <div class="featured lh-lg">
+                <div v-if="isSponsored" class="featured lh-lg">
                   Sponsorizzato <i class="fa-solid fa-circle-check"></i>
                 </div>
                 <img
@@ -80,10 +83,13 @@ export default {
   data() {
     return {
       apartment: [],
+      isLoading: false,
+      isSponsored: false,
     };
   },
   methods: {
     getApartment() {
+      this.isLoading = true;
       axios
         .get("http://localhost:8000/api/apartment/" + this.$route.params.id)
         .then((res) => {
@@ -95,6 +101,8 @@ export default {
         })
         .then(() => {
           console.log("chiamata terminata");
+          this.isLoading = false;
+          if (this.apartment.packs.length) this.isSponsored = true;
         });
     },
   },

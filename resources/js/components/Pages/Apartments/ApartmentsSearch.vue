@@ -108,29 +108,37 @@ export default {
   },
   methods: {
     searchByLocation() {
-      const config = {
-        params: {
-          countryCode: "IT",
-          municipality: this.dist,
-          key: "IKVotV9Xwnzy8UimnZdGePT1sU3HI33N",
-        },
-      };
+      if (this.dist) {
+        const config = {
+          params: {
+            countryCode: "IT",
+            municipality: this.dist,
+            key: "IKVotV9Xwnzy8UimnZdGePT1sU3HI33N",
+          },
+        };
 
-      delete axios.defaults.headers.common["X-Requested-With"];
-      axios
-        .get("https://api.tomtom.com/search/2/structuredGeocode.json", config)
-        .then((res) => {
-          this.lat = res.data.results[0].position.lat;
-          this.long = res.data.results[0].position.lon;
+        delete axios.defaults.headers.common["X-Requested-With"];
+        axios
+          .get("https://api.tomtom.com/search/2/structuredGeocode.json", config)
+          .then((res) => {
+            this.lat = res.data.results[0].position.lat;
+            this.long = res.data.results[0].position.lon;
 
-          this.getApartments(this.radius || 20, "radius");
-        })
-        .catch((err) => {
-          console.error(err);
-        })
-        .then(() => {
-          console.log("chiamata terminata LatLong");
-        });
+            this.getApartments(this.radius || 20, "radius");
+          })
+          .catch((err) => {
+            console.error(err);
+          })
+          .then(() => {
+            console.log("chiamata terminata LatLong");
+          });
+      } else {
+        this.dist = null;
+        this.lat = null;
+        this.long = null;
+        this.apartments = [];
+        this.getApartments();
+      }
     },
     distance(lat1, lon1, lat2, lon2, unit) {
       if (lat1 == lat2 && lon1 == lon2) {
@@ -166,7 +174,7 @@ export default {
 
     getApartments(value, type, page = 1) {
       // Mappa al caricamento
-
+      this.apartments = [];
       this.setValueSelect(value, type);
       this.isLoading = true;
       const config = {
@@ -180,7 +188,7 @@ export default {
       axios
         .get("http://127.0.0.1:8000/api/apartments", config)
         .then((res) => {
-          const apartments = res.data.data;
+          const apartments = res.data;
           if (this.lat && this.long) {
             this.apartments = apartments.filter((apartment) => {
               const lat = apartment.position.latitude;
@@ -195,7 +203,14 @@ export default {
               return false;
             });
           } else {
-            this.apartments = res.data.data;
+            for (let el of res.data) {
+              this.apartments.push(el);
+
+              this.apartments.sort((a, b) =>
+                a.packs < b.packs ? 1 : b.packs < a.packs ? -1 : 0
+              );
+            }
+            /* this.apartments = res.data.data; */
           }
         })
         .catch((err) => {

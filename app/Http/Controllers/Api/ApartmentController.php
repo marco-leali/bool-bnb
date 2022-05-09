@@ -20,7 +20,7 @@ class ApartmentController extends Controller
         $room = $request->query('room') ?? null;
         $bed = $request->query('bed') ?? null;
 
-        $query = Apartment::orderBy('created_at', 'DESC')->where('visible', 1);
+        $query = Apartment::where('visible', 1);
 
         if ($room && !$bed) $query->where('room', '>=', +$room);
         else if ($bed && !$room) $query->where('bed', '>=', +$bed);
@@ -28,7 +28,7 @@ class ApartmentController extends Controller
             ['room', '>=', +$room], ['bed', '>=', +$bed]
         ]);
 
-        $apartments = $query->with('position')->with('packs')->paginate(4);
+        $apartments = $query->with('position')->with('packs')->get();
 
         if (!$apartments) return response('NOT FOUND', 404);
 
@@ -58,7 +58,7 @@ class ApartmentController extends Controller
 
 
 
-        $query = Apartment::where('id', $id)->first();
+        $query = Apartment::where('id', $id)->with('position')->with('packs')->first();
 
         if (!$query) return response('NOT FOUND', 404);
 
