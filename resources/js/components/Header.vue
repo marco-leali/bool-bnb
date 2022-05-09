@@ -23,6 +23,9 @@
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ name: 'ApartmentsSearch' }">Appartamenti</router-link>
               </li>
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'PacksDetail' }">I nostri pacchetti</router-link>
+              </li>
             </ul>
             <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
               <li class="nav-item">
