@@ -28,7 +28,7 @@ class ApartmentController extends Controller
             ['room', '>=', +$room], ['bed', '>=', +$bed]
         ]);
 
-        $apartments = $query->with('position')->paginate(4);
+        $apartments = $query->with('position')->with('packs')->paginate(4);
 
         if (!$apartments) return response('NOT FOUND', 404);
 
@@ -54,15 +54,15 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-         //controllo se nella query ci sono le selezioni
+        //controllo se nella query ci sono le selezioni
 
-      
 
-         $query = Apartment::where('id', $id)->first();
- 
-         if (!$query) return response('NOT FOUND', 404);
- 
-          return response()->json($query); 
+
+        $query = Apartment::where('id', $id)->first();
+
+        if (!$query) return response('NOT FOUND', 404);
+
+        return response()->json($query);
     }
 
     /**
