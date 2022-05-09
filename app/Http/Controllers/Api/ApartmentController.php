@@ -59,7 +59,7 @@ class ApartmentController extends Controller
         //controllo se nella query ci sono le selezioni
          $ip_address = $request->ip();
 
-         $result_ip = IpAddress::where('ip','=',$ip_address)->first();
+         $result_ip = IpAddress::where('ip','=',$ip_address)->where('apartment_id','=',$id)->first();
         
          if($result_ip == null || Carbon::parse($result_ip['created_at'])->addHours(24) < Carbon::Now()){
 
