@@ -29,11 +29,11 @@
             </ul>
             <ul class="navbar-nav d-flex justify-content-end flex-grow-1">
               <li class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link btn btn-secondary text-light" href="/login">Area personale</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link btn btn-secondary mx-3 text-light" href="/register">Registrati</a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
