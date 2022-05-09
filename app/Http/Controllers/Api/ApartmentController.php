@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Apartment;
+use App\Models\IpAddress;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ApartmentController extends Controller
 {
@@ -55,9 +57,17 @@ class ApartmentController extends Controller
     public function show(Request $request, $id)
     {
         //controllo se nella query ci sono le selezioni
+         $ip_address = $request->ip();
 
-        /* dd($request->ip()); */
+         $result_ip = IpAddress::where('ip','=',$ip_address)->first();
+        
+         if($result_ip == null || Carbon::parse($result_ip['created_at'])->addHours(24) < Carbon::Now()){
 
+            $new_ip =  new IpAddress();
+            $new_ip->ip = $ip_address;
+            $new_ip->apartment_id = $id;
+            $new_ip->save(); 
+         }
 
         $query = Apartment::where('id', $id)->with('position')->with('packs')->first();
 
