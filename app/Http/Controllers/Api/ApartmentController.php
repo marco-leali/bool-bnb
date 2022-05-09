@@ -52,10 +52,11 @@ class ApartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         //controllo se nella query ci sono le selezioni
 
+        /* dd($request->ip()); */
 
 
         $query = Apartment::where('id', $id)->with('position')->with('packs')->first();
