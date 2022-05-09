@@ -23,13 +23,14 @@
           <p class="mt-4">
             {{ apartment.title_desc }}
           </p>
-          <div class="d-flex justify-content-between">
+          <div>
             <p><strong>Stanze: </strong> {{ apartment.room }}</p>
             <p><strong>Bagni: </strong> {{ apartment.bathroom }}</p>
             <p><strong>Letti:</strong> {{ apartment.bed }}</p>
             <p>
               <strong>Metri quadrati:</strong> {{ apartment.square_meters }}
             </p>
+            <p><strong>Località: </strong>{{ apartment.position.city }}</p>
           </div>
 
           <router-link
@@ -55,11 +56,7 @@ export default {
 
 <style scoped lang="scss">
 .card {
-  --card-gradient: rgba(0, 0, 0, 0.8);
-  --card-gradient: #42666c, #666666;
-  --card-blend-mode: overlay;
-
-  background-color: #fff;
+  background-color: gainsboro ;
   padding-bottom: 1rem;
   box-shadow: black 1px 4px 15px -4px;
   background-image: linear-gradient(
