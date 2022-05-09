@@ -1,5 +1,5 @@
 <template>
-  <section id="form-message">
+  <section id="form-message" class="py-5">
     <div class="container h-75">
       <div class="row h-75 align-items-center">
         <div class="col-12 text-center">
@@ -127,7 +127,7 @@ export default {
 </script>
 
 <style>
-#form-message {
+/* #form-message {
   height: 70vh;
-}
+} */
 </style>

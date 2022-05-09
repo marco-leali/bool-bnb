@@ -41,17 +41,18 @@
                     >
                   </div>
                   <hr />
-                  <p>
+                  <p class="fs-2">
                     <strong>Descrizione appartamento: </strong>
                     {{ apartment.title_desc }}
                   </p>
-                  <p class="fs-4">
+                  <p >
                     <strong>Metri Quadrati: </strong>
                     {{ apartment.square_meters }}
                   </p>
-                  <p><strong>Stanze</strong> {{ apartment.room }}</p>
-                  <p><strong>Letti</strong> {{ apartment.bed }}</p>
-                  <p><strong>Bagni</strong> {{ apartment.bathroom }}</p>
+                  <p><strong>Stanze:</strong> {{ apartment.room }}</p>
+                  <p><strong>Letti:</strong> {{ apartment.bed }}</p>
+                  <p><strong>Bagni:</strong> {{ apartment.bathroom }}</p>
+                  <p><strong>Località:</strong> {{ apartment.position.city }}, {{ apartment.position.province }}, {{ apartment.position.postal_code }} <br> {{ apartment.position.street }}</p>
                   <!-- <router-link
                     class="btn btn-sm bg-secondary text-light"
                     :to="{
@@ -61,7 +62,10 @@
                     >Scrimi per ulteriori dettagli</router-link
                   > -->
                 </div>
-              </div>
+              </div>            
+            </div>
+            <hr class="m-0 p-0">
+            <div class="row">
               <div class="col-12">
                 <FormMessage :id="apartment.id" />
               </div>
@@ -114,8 +118,11 @@ export default {
 
 <style scoped lang="scss">
 #apartment-detail {
-  height: 70vh;
-
+/*   height: 1000vh;
+ */
+ .card{
+   background-color: gainsboro;
+ }
   .featured {
     position: absolute;
     transform: rotate(45deg);
