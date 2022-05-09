@@ -8,7 +8,7 @@
             ricerca
             tramite l'acquisto di uno dei seguenti pacchetti.
         </h3>
-        <table class="table table-dark">
+        <table class="table table-dark table-striped">
             <thead>
                 <tr>
                     <th scope="col">Pacchetto</th>
