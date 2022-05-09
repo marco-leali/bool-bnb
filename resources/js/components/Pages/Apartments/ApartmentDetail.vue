@@ -45,14 +45,19 @@
                     <strong>Descrizione appartamento: </strong>
                     {{ apartment.title_desc }}
                   </p>
-                  <p >
+                  <p>
                     <strong>Metri Quadrati: </strong>
                     {{ apartment.square_meters }}
                   </p>
                   <p><strong>Stanze:</strong> {{ apartment.room }}</p>
                   <p><strong>Letti:</strong> {{ apartment.bed }}</p>
                   <p><strong>Bagni:</strong> {{ apartment.bathroom }}</p>
-                  <p><strong>Località:</strong> {{ apartment.position.city }}, {{ apartment.position.province }}, {{ apartment.position.postal_code }} <br> {{ apartment.position.street }}</p>
+                  <p>
+                    <strong>Località:</strong> {{ apartment.position.city }},
+                    {{ apartment.position.province }},
+                    {{ apartment.position.postal_code }} <br />
+                    {{ apartment.position.street }}
+                  </p>
                   <!-- <router-link
                     class="btn btn-sm bg-secondary text-light"
                     :to="{
@@ -62,9 +67,9 @@
                     >Scrimi per ulteriori dettagli</router-link
                   > -->
                 </div>
-              </div>            
+              </div>
             </div>
-            <hr class="m-0 p-0">
+            <hr class="m-0 p-0" />
             <div class="row">
               <div class="col-12">
                 <FormMessage :id="apartment.id" />
@@ -118,11 +123,11 @@ export default {
 
 <style scoped lang="scss">
 #apartment-detail {
-/*   height: 1000vh;
+  /*   height: 1000vh;
  */
- .card{
-   background-color: gainsboro;
- }
+  .card {
+    background-color: gainsboro;
+  }
   .featured {
     position: absolute;
     transform: rotate(45deg);
@@ -130,7 +135,8 @@ export default {
     right: -38px;
     height: 27px;
     width: 168px;
-    background-color: dodgerblue;
+    background-color: white;
+    box-shadow: black 1px 5px 16px 0px;
     font-size: 0.8rem;
     text-align: center;
   }

@@ -56,7 +56,7 @@ export default {
 
 <style scoped lang="scss">
 .card {
-  background-color: gainsboro ;
+  background-color: gainsboro;
   padding-bottom: 1rem;
   box-shadow: black 1px 4px 15px -4px;
   background-image: linear-gradient(
@@ -94,7 +94,8 @@ export default {
     right: -41px;
     height: 27px;
     width: 168px;
-    background-color: dodgerblue;
+    background-color: white;
+    box-shadow: black 1px 5px 16px 0px;
     font-size: 0.8rem;
     text-align: center;
   }
