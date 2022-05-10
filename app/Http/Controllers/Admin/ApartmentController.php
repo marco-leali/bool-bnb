@@ -55,7 +55,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-   
+
         $request->validate([
             'title_desc' => 'required|string|min:5|max:255',
             'image.*' => 'nullable|image',
@@ -70,18 +70,18 @@ class ApartmentController extends Controller
             'postal_code' => 'required|string|max:10'
         ], [
             'required' => 'il campo :attribute è obbligatorio',
-            'image' => 'l\'immagine non è valida', 
+            'image' => 'l\'immagine non è valida',
             'title_desc.min' => 'il titolo deve avere almeno 5 caratteri'
         ]);
 
         $data = $request->all();
 
-        if($data['image']) {
-            $img_url = Storage::disk('public')->put('apartments',$data['image']);
-            $data['image'] = "/storage/".$img_url;
+        if ($data['image']) {
+            $img_url = Storage::disk('public')->put('apartments', $data['image']);
+            $data['image'] = "/storage/" . $img_url;
         }
         $data['user_id'] = Auth::id();
-        
+
         $apartment = Apartment::create($data);
 
         if (array_key_exists('services', $data)) $apartment->services()->attach($data['services']);
@@ -161,11 +161,11 @@ class ApartmentController extends Controller
         ]);
 
         $data = $request->all();
-        if($data['image']) {
-            $img_url = Storage::disk('public')->put('apartments',$data['image']);
-            $data['image'] = "/storage/".$img_url;
+        if (array_key_exists('image', $data)) {
+            $img_url = Storage::disk('public')->put('apartments', $data['image']);
+            $data['image'] = "/storage/" . $img_url;
         }
-        
+
         $apartment->update($data);
 
         if (array_key_exists('services', $data)) $apartment->services()->sync($data['services']);
