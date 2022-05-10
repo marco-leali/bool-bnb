@@ -10,6 +10,7 @@
             <input
               type="text"
               class="form-control"
+              :class="{ 'is-invalid': searchError }"
               placeholder="Location"
               v-model="dist"
               @keyup.enter="searchByLocation"
@@ -141,6 +142,7 @@ export default {
       apartments: [],
       services: [],
       selectedServices: [],
+      searchError: false,
       dist: null,
       bed: null,
       room: null,
@@ -172,6 +174,7 @@ export default {
   },
   methods: {
     searchByLocation() {
+      this.searchError = false;
       if (this.dist) {
         const config = {
           params: {
@@ -192,6 +195,7 @@ export default {
           })
           .catch((err) => {
             console.error(err);
+            this.searchError = true;
           })
           .then(() => {
             console.log("chiamata terminata LatLong");
@@ -371,6 +375,8 @@ export default {
     },
   },
   mounted() {
+    this.dist = this.$route.query.search;
+    if (this.$route.query.search) this.searchByLocation();
     this.getApartments();
     this.getServices();
   },
