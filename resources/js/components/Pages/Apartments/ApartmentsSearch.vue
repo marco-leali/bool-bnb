@@ -356,12 +356,11 @@ export default {
       if (!this.selectedServices.length) return this.apartments;
       else {
         return this.apartments.filter((a) => {
-          const arr = [];
-          for (let i = 0; i < a.services.length; i++) {
-            const service = a.services[i];
-            arr.push(service.id);
-          }
-          this.selectedServices.includes(arr);
+          return (
+            a.services.filter((s) => {
+              return this.selectedServices.includes(s.id);
+            }).length > 0
+          );
         });
       }
     },
