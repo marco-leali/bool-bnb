@@ -19,7 +19,7 @@ const router = new VueRouter({
     linkExactActiveClass: 'active',
     routes: [
         { path: '/', component: HomePage, name: 'HomePage' },
-        { path: '/apartments', component: ApartmentsSearch, name: 'ApartmentsSearch' },
+        { path: '/apartments', component: ApartmentsSearch, name: 'ApartmentsSearch', props: true },
         { path: '/apartments/:id', component: ApartmentDetail, name: 'ApartmentDetail' },
         { path: '/packsDetail', component: PacksDetail, name: 'PacksDetail' },
         { path: '/contact/:id', component: FormMessage, name: 'FormMessage' }
