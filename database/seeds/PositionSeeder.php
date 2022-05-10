@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Models\Position;
 use App\Models\Apartment;
+use Illuminate\Support\Facades\Http;
 
 class PositionSeeder extends Seeder
 {
@@ -18,10 +19,23 @@ class PositionSeeder extends Seeder
         $positions = config('positions');
 
         foreach ($positions as $position) {
+            $response = Http::get('https://api.tomtom.com/search/2/structuredGeocode.json', [
+                'countryCode' => 'IT',
+                'streetNumber' => $position['street'],
+                'streetName' => $position['street'],
+                'municipality' => $position['city'],
+                'postalCode' => $position['postal_code'],
+                'key' => 'IKVotV9Xwnzy8UimnZdGePT1sU3HI33N',
+
+            ]);
+            $position['latitude'] = $response->json()['results'][0]['position']['lat'];
+            $position['longitude'] = $response->json()['results'][0]['position']['lon'];
             $new_position = new Position();
             $new_position->fill($position);
             $new_position->save();
         }
+
+
 
         /* $apartment_ids = Apartment::pluck('id')->toArray();
 
