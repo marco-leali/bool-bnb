@@ -361,11 +361,23 @@ export default {
       if (!this.selectedServices.length) return this.apartments;
       else {
         return this.apartments.filter((a) => {
-          return (
-            a.services.filter((s) => {
-              return this.selectedServices.includes(s.id);
-            }).length > 0
-          );
+          let asService = true;
+
+          if(a.services.length > 0)
+          { 
+              this.selectedServices.forEach((s) =>{
+                
+              if(!a.services.some( service => service['id'] == s ))
+              { 
+                asService =  false;
+              } 
+             });
+          }
+          else {
+            asService =  false;
+          };
+          
+          return asService;
         });
       }
     },
