@@ -283,5 +283,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+#map {
+  border-radius: 20px;
+  box-shadow: black 5px 6px 20px -11px;
+}
 </style>
