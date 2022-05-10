@@ -5,14 +5,10 @@
         <div class="col-sm-6 z-index">
           <div class="title mt-5">
             <h1>
-              Let's <span class="text-primary">Find A Home</span> That's Perfect
-              Place For You
+              Lasciati guidare <span class="text-primary">guidare</span> dalla curiosità
             </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus,
-              modi aliquid. Veritatis voluptates iste tenetur aliquam et dolores
-              hic, expedita rerum enim consequatur quaerat culpa sed earum
-              veniam nihil eveniet.
+              Pianifica un viaggio con l'aiuto della nostra ricerca da ogni parte del mondo
             </p>
             <div class="d-flex">
               <div
