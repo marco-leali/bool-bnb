@@ -123,8 +123,9 @@ export default {
 
 <style scoped lang="scss">
 #apartment-detail {
-  /*   height: 1000vh;
- */
+    height: 100vh;
+    margin-bottom: 200px ;
+ 
   .card {
     background-color: gainsboro;
   }
