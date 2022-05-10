@@ -74,9 +74,7 @@
                 var button = document.querySelector('#submit-button');
 
                 braintree.dropin.create({
-                    authorization: "<?php
-use Braintree\ClientToken;
-echo $clientToken = ClientToken::generate(); ?>",
+                    authorization: 'sandbox_9qfzw4sg_xky6586tj94wybm9',
                     container: '#dropin-container'
                 }, function(createErr, instance) {
                     button.addEventListener('click', function() {
