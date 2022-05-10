@@ -5,8 +5,7 @@
         <div class="col-sm-6 z-index">
           <div class="title mt-5">
             <h1>
-              Lasciati guidare <span class="text-primary">guidare</span> dalla
-              curiosità
+              Lasciati <span class="text-primary">guidare</span> dalla curiosità
             </h1>
             <p>
               Pianifica un viaggio con l'aiuto della nostra ricerca da ogni
