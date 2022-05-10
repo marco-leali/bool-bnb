@@ -1,7 +1,7 @@
 <template>
   <header class="shadow">
-    <div class="container-fluid bg-light">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><img src="http://www.mattonsbnb.com/wp-content/uploads/2016/04/cropped-icon-1.png" width="50" alt=""> BoolBnB</a>
           <button
@@ -63,9 +63,13 @@ export default {
 <style scoped lang="scss">
 header{
   width: 100%;
+  background: #2F4F4F;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 5;
+  a{
+    color: white;
+  }
 }
 </style>

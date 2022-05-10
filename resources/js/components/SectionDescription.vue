@@ -7,12 +7,9 @@
         </div>
         <div class="col-sm-12 col-md-5">
           <div class="w-750">
-            <h2>Flessibilità e opzione per la tua suite preferita</h2>
+            <h2>Flessibilità e opzioni per la tua suite preferita</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-              sint voluptate modi officia a saepe quam quod, molestiae corporis
-              quas commodi eum, nemo magni, delectus perspiciatis aperiam
-              molestias distinctio tenetur!
+               La migliore soluzioni per ogni tua esigenza
             </p>
           </div>
         </div>
