@@ -23,7 +23,7 @@ class MessageSeeder extends Seeder
             $new_message = new Message();
             $new_message->apartment_id = $apartment_ids[$i];
             $new_message->email = $faker->email();
-            $new_message->content = $faker->paragraph();
+            $new_message->content = $faker->paragraph(2);
             $new_message->save();
         }
     }
