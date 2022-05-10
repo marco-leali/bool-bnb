@@ -32,13 +32,42 @@
               </div>
               <div class="col-sm-12 col-md-12 col-lg-4">
                 <div class="card-body">
-                  <div class="mb-4">
-                    <router-link
-                      class="btn btn-sm bg-secondary text-light"
-                      :to="{ name: 'ApartmentsSearch' }"
-                      ><i class="fa-solid fa-magnifying-glass"></i> Cerca
-                      altri</router-link
-                    >
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div>
+                      <router-link
+                        class="btn btn-sm bg-secondary text-light lh-base"
+                        :to="{ name: 'ApartmentsSearch' }"
+                        ><i class="fa-solid fa-magnifying-glass"></i> Cerca
+                        altri</router-link
+                      >
+                    </div>
+                    <div class="d-flex">
+                      <div
+                        class="icon mx-2 my-2"
+                        v-for="service in apartment.services"
+                        :key="service.id"
+                      >
+                        <i
+                          class="fa-solid fa-2x"
+                          :class="{
+                            'fa-square-parking': service.name == 'Parking',
+                            'fa-person-swimming':
+                              service.name == 'Swimming pool',
+                            'fa-bell-concierge': service.name == 'Concierge',
+                            'fa-umbrella-beach': service.name == 'Sea View',
+                            'fa-hot-tub-person': service.name == 'Sauna',
+                            'fa-wifi': service.name == 'Wi-Fi',
+                            'fa-smoking': service.name == 'Smoking',
+                          }"
+                          :title="service.name"
+                        ></i>
+                      </div>
+                      <div v-if="!apartment.services.length" class="icon">
+                        <i class="fa-solid fa-ban-smoking fa-2x"></i>
+                      </div>
+                    </div>
                   </div>
                   <hr />
                   <p class="fs-2">
@@ -67,30 +96,6 @@
                     }"
                     >Scrimi per ulteriori dettagli</router-link
                   > -->
-                  <div class="d-flex">
-                    <div
-                      class="icon mx-2 my-2"
-                      v-for="service in apartment.services"
-                      :key="service.id"
-                    >
-                      <i
-                        class="fa-solid fa-2x"
-                        :class="{
-                          'fa-square-parking': service.name == 'Parking',
-                          'fa-person-swimming': service.name == 'Swimming pool',
-                          'fa-bell-concierge': service.name == 'Concierge',
-                          'fa-umbrella-beach': service.name == 'Sea view',
-                          'fa-hot-tub-person': service.name == 'Sauna',
-                          'fa-wifi': service.name == 'Wi-Fi',
-                          'fa-smoking': service.name == 'Smoking',
-                        }"
-                        :title="service.name"
-                      ></i>
-                    </div>
-                    <div v-if="!apartment.services.length" class="icon">
-                      <i class="fa-solid fa-ban-smoking fa-2x"></i>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -148,9 +153,9 @@ export default {
 
 <style scoped lang="scss">
 #apartment-detail {
-    height: 100vh;
-    margin-bottom: 200px ;
- 
+  height: 100vh;
+  margin-bottom: 200px;
+
   .card {
     background-color: gainsboro;
   }

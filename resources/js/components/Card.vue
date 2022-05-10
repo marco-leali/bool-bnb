@@ -24,7 +24,9 @@
           <p class="me-2"><strong>Letti:</strong> {{ item.bed }}</p>
         </div>
         <div class="d-flex">
-          <p class="me-2"><strong>Metri quadrati:</strong> {{ item.square_meters }}</p>
+          <p class="me-2">
+            <strong>Metri quadrati:</strong> {{ item.square_meters }}
+          </p>
           <p>
             <strong>Località: </strong>{{ item.position.city }} ({{
               item.position.province
@@ -45,7 +47,7 @@
               'fa-square-parking': service.name == 'Parking',
               'fa-person-swimming': service.name == 'Swimming pool',
               'fa-bell-concierge': service.name == 'Concierge',
-              'fa-umbrella-beach': service.name == 'Sea view',
+              'fa-umbrella-beach': service.name == 'Sea View',
               'fa-hot-tub-person': service.name == 'Sauna',
               'fa-wifi': service.name == 'Wi-Fi',
               'fa-smoking': service.name == 'Smoking',

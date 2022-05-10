@@ -367,20 +367,16 @@ export default {
         return this.apartments.filter((a) => {
           let asService = true;
 
-          if(a.services.length > 0)
-          { 
-              this.selectedServices.forEach((s) =>{
-                
-              if(!a.services.some( service => service['id'] == s ))
-              { 
-                asService =  false;
-              } 
-             });
+          if (a.services.length > 0) {
+            this.selectedServices.forEach((s) => {
+              if (!a.services.some((service) => service["id"] == s)) {
+                asService = false;
+              }
+            });
+          } else {
+            asService = false;
           }
-          else {
-            asService =  false;
-          };
-          
+
           return asService;
         });
       }

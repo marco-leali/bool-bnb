@@ -1,16 +1,15 @@
 <template>
   <section id="subscribe">
     <div class="container">
-
       <!-- alert -->
-    <div class="layover" v-if="alertActive">
-      <div class="alert shadow">
-        <div class="main-alert">
-          <i class="fa-solid fa-check fa-2x"></i>
-          <h2>La tua email è stata inviata con successo</h2>
+      <div class="layover" v-if="alertActive">
+        <div class="alert shadow">
+          <div class="main-alert">
+            <i class="fa-solid fa-check fa-2x"></i>
+            <h2>La tua email è stata inviata con successo</h2>
+          </div>
         </div>
       </div>
-    </div>
 
       <div class="row">
         <div class="col-12 text-center">
@@ -23,9 +22,9 @@
           >
             <input
               type="text"
-              placeholder="inserisci email"
-               v-model.trim="term"
-                @keyup.enter="uploadMail"
+              placeholder="Inserisci email"
+              v-model.trim="term"
+              @keyup.enter="uploadMail"
             />
             <!-- Button trigger modal -->
             <button
@@ -50,7 +49,7 @@ export default {
   name: "SectionSubscribe",
   data() {
     return {
-       term: "",
+      term: "",
       alertActive: false,
     };
   },
@@ -89,6 +88,7 @@ export default {
       border: 0;
       padding-left: 25px;
       outline: 0;
+      background-color: #f8fafc;
     }
     button {
       width: 189px;
@@ -132,5 +132,4 @@ export default {
     }
   }
 }
-
 </style>

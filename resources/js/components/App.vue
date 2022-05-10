@@ -2,27 +2,27 @@
   <div>
     <Header />
     <main>
-    <router-view></router-view>
+      <router-view></router-view>
     </main>
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    Footer
-  }
+    Footer,
+  },
 };
 </script>
 
 <style scoped lang="scss">
-main{
+main {
   padding-top: 75px;
 }
 </style>

@@ -25,6 +25,9 @@ const router = new VueRouter({
         { path: '/contact/:id', component: FormMessage, name: 'FormMessage' }
         /* { path: '*', component: NotFound }, */
     ],
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
 })
 
 export default router;

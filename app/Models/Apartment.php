@@ -34,7 +34,7 @@ class Apartment extends Model
 
     public function services()
     {
-        return $this->belongsToMany('App\Models\Service');
+        return $this->belongsToMany('App\Models\Service')->withTimestamps();
     }
 
     public function packs()
