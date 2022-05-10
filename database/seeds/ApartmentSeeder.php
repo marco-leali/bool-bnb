@@ -11,19 +11,15 @@ class ApartmentSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        for($i = 0; $i < 10; $i++){
-            $apartment = new Apartment();
-            $apartment->user_id = 1;
-            $apartment->title_desc = $faker->words(5, true);
-            $apartment->image = $faker->imageUrl(640, 480, 'apartment', true);
-            $apartment->room = rand(1, 10);
-            $apartment->bathroom = rand(1, 3);
-            $apartment->bed = rand(1, 7);
-            $apartment->square_meters = rand(30, 500);
-            $apartment->save();
+        $apartments = config('apartments');
+
+        foreach ($apartments as $apartment) {
+            $new_apartment = new Apartment();
+            $new_apartment->user_id = rand(1, 4);
+            $new_apartment->fill($apartment);
+            $new_apartment->save();
         }
-       
     }
 }

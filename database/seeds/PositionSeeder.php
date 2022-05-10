@@ -12,9 +12,18 @@ class PositionSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-        $apartment_ids = Apartment::pluck('id')->toArray();
+
+        $positions = config('positions');
+
+        foreach ($positions as $position) {
+            $new_position = new Position();
+            $new_position->fill($position);
+            $new_position->save();
+        }
+
+        /* $apartment_ids = Apartment::pluck('id')->toArray();
 
         for ($i=0; $i < 10; $i++) { 
             
@@ -28,6 +37,6 @@ class PositionSeeder extends Seeder
             $new_position->city = $faker->city();
             $new_position->save();
 
-        }
+        } */
     }
 }
