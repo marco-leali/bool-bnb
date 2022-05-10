@@ -18,15 +18,19 @@
         {{ item.title_desc }}
       </p>
       <div>
-        <p><strong>Stanze: </strong> {{ item.room }}</p>
-        <p><strong>Bagni: </strong> {{ item.bathroom }}</p>
-        <p><strong>Letti:</strong> {{ item.bed }}</p>
-        <p><strong>Metri quadrati:</strong> {{ item.square_meters }}</p>
-        <p>
-          <strong>Località: </strong>{{ item.position.city }} ({{
-            item.position.province
-          }})
-        </p>
+        <div class="d-flex">
+          <p class="me-2"><strong>Stanze: </strong> {{ item.room }}</p>
+          <p class="me-2"><strong>Bagni: </strong> {{ item.bathroom }}</p>
+          <p class="me-2"><strong>Letti:</strong> {{ item.bed }}</p>
+        </div>
+        <div class="d-flex">
+          <p class="me-2"><strong>Metri quadrati:</strong> {{ item.square_meters }}</p>
+          <p>
+            <strong>Località: </strong>{{ item.position.city }} ({{
+              item.position.province
+            }})
+          </p>
+        </div>
       </div>
 
       <div class="d-flex">
