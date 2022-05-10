@@ -30,7 +30,7 @@ class ApartmentController extends Controller
             ['room', '>=', +$room], ['bed', '>=', +$bed]
         ]);
 
-        $apartments = $query->with('position')->with('packs')->get();
+        $apartments = $query->with('position')->with('packs')->with('services')->get();
 
         if (!$apartments) return response('NOT FOUND', 404);
 
@@ -57,19 +57,19 @@ class ApartmentController extends Controller
     public function show(Request $request, $id)
     {
         //controllo se nella query ci sono le selezioni
-         $ip_address = $request->ip();
+        $ip_address = $request->ip();
 
-         $result_ip = IpAddress::where('ip','=',$ip_address)->where('apartment_id','=',$id)->first();
-        
-         if($result_ip == null || Carbon::parse($result_ip['created_at'])->addHours(24) < Carbon::Now()){
+        $result_ip = IpAddress::where('ip', '=', $ip_address)->where('apartment_id', '=', $id)->first();
+
+        if ($result_ip == null || Carbon::parse($result_ip['created_at'])->addHours(24) < Carbon::Now()) {
 
             $new_ip =  new IpAddress();
             $new_ip->ip = $ip_address;
             $new_ip->apartment_id = $id;
-            $new_ip->save(); 
-         }
+            $new_ip->save();
+        }
 
-        $query = Apartment::where('id', $id)->with('position')->with('packs')->first();
+        $query = Apartment::where('id', $id)->with('position')->with('packs')->with('services')->first();
 
         if (!$query) return response('NOT FOUND', 404);
 

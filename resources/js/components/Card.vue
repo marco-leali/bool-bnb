@@ -1,56 +1,46 @@
 <template>
-  <section id="detail-apartment" class="container-fluid my-5 p-5">
-    <!-- Card -->
-    <div class="row g-5">
-      <div
-        class="col-sm-12 col-md-6 col-lg-4 col-xl-3"
-        v-for="apartment in items"
-        :key="apartment.id"
-      >
-        <div class="card position-relative px-0">
-          <div v-if="apartment.packs.length" class="featured lh-lg">
-            Sponsorizzato <i class="fa-solid fa-circle-check"></i>
-          </div>
-
-          <img
-            :src="
-              apartment.image ||
-              'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg'
-            "
-            :alt="apartment.title_desc"
-          />
-
-          <p class="mt-4">
-            {{ apartment.title_desc }}
-          </p>
-          <div>
-            <p><strong>Stanze: </strong> {{ apartment.room }}</p>
-            <p><strong>Bagni: </strong> {{ apartment.bathroom }}</p>
-            <p><strong>Letti:</strong> {{ apartment.bed }}</p>
-            <p>
-              <strong>Metri quadrati:</strong> {{ apartment.square_meters }}
-            </p>
-            <p><strong>Località: </strong>{{ apartment.position.city }}</p>
-          </div>
-
-          <router-link
-            :to="{
-              name: 'ApartmentDetail',
-              params: { id: apartment.id, apartment: apartment },
-            }"
-            class="btn btn-sm btn-secondary mt-3"
-            >Scopri di più</router-link
-          >
-        </div>
+  <!-- Card -->
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+    <div class="card position-relative px-0">
+      <div v-if="item.packs.length" class="featured lh-lg">
+        Sponsorizzato <i class="fa-solid fa-circle-check"></i>
       </div>
+
+      <img
+        :src="
+          item.image ||
+          'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg'
+        "
+        :alt="item.title_desc"
+      />
+
+      <p class="mt-4">
+        {{ item.title_desc }}
+      </p>
+      <div>
+        <p><strong>Stanze: </strong> {{ item.room }}</p>
+        <p><strong>Bagni: </strong> {{ item.bathroom }}</p>
+        <p><strong>Letti:</strong> {{ item.bed }}</p>
+        <p><strong>Metri quadrati:</strong> {{ item.square_meters }}</p>
+        <p><strong>Località: </strong>{{ item.position.city }}</p>
+      </div>
+
+      <router-link
+        :to="{
+          name: 'ApartmentDetail',
+          params: { id: item.id, apartment: item },
+        }"
+        class="btn btn-sm btn-secondary mt-3"
+        >Scopri di più</router-link
+      >
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   name: "Card",
-  props: ["items"],
+  props: ["item"],
 };
 </script>
 

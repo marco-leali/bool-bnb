@@ -23,13 +23,30 @@
             </button>
           </div>
 
-          <div class="col-12 py-4">
+          <!--  <div class="col-12 py-4">
             <Select
               @on-selected="getApartments"
               placeholder="il raggio"
               :options="optionsKm"
               type="radius"
             />
+          </div> -->
+          <div class="col-12 py-4">
+            <label for="customRange1" class="form-label fs-4"
+              >Seleziona il raggio</label
+            >
+            <input
+              v-model="radius"
+              @change="getApartments"
+              min="5"
+              max="50"
+              step="5"
+              type="range"
+              class="form-range"
+              id="customRange1"
+              :disabled="!dist"
+            />
+            <p class="m-0">Raggio attuale: {{ radius }} Km</p>
           </div>
           <div class="row">
             <div class="col-6">
@@ -48,16 +65,55 @@
                 type="room"
               />
             </div>
-            <div class="col-12 text-center pt-4">
+            <!-- Servizi -->
+            <div v-if="!servicesLoading" class="row py-4">
+              <div
+                class="col-3 py-2"
+                v-for="service in services"
+                :key="service.id"
+              >
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    :id="'service-' + service.id"
+                    v-model="selectedServices"
+                    :value="service.id"
+                  />
+                  <label
+                    class="form-check-label"
+                    :for="'service-' + service.id"
+                    >{{ service.name }}</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div v-else class="row">
+              <div
+                class="spinner-grow text-success col-12 mx-auto my-5"
+                role="status"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div class="col-12 text-center pt-2">
               <h3>Filtra gli appartamenti per raggio, letti e stanze</h3>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <Card v-if="!isLoading" :items="apartments" />
-    <PlaceholderCard v-else />
+    <section id="detail-apartment" class="container-fluid my-5 p-5">
+      <div v-if="!isLoading" class="row g-5">
+        <Card
+          v-for="apartment in filteredApartments"
+          :key="apartment.id"
+          :item="apartment"
+        />
+      </div>
+      <PlaceholderCard v-else />
+    </section>
   </section>
 </template>
 
@@ -76,7 +132,10 @@ export default {
   data() {
     return {
       isLoading: false,
+      servicesLoading: false,
       apartments: [],
+      services: [],
+      selectedServices: [],
       dist: null,
       bed: null,
       room: null,
@@ -276,9 +335,39 @@ export default {
         map.addControl(new tt.NavigationControl());
       }
     },
+    getServices() {
+      this.servicesLoading = true;
+      axios
+        .get("http://localhost:8000/api/services")
+        .then((res) => {
+          this.services = res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        })
+        .then(() => {
+          console.log("chiamata terminata servizi");
+          this.servicesLoading = false;
+        });
+    },
+  },
+  computed: {
+    filteredApartments() {
+      if (!this.selectedServices.length) return this.apartments;
+      else {
+        return this.apartments.filter((a) => {
+          return (
+            a.services.filter((s) => {
+              return this.selectedServices.includes(s.id);
+            }).length > 0
+          );
+        });
+      }
+    },
   },
   mounted() {
     this.getApartments();
+    this.getServices();
   },
 };
 </script>

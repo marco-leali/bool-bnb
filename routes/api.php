@@ -23,3 +23,5 @@ Route::get('/apartment/{id}', 'Api\ApartmentController@show');
 
 /* api per i messaggi */
 Route::post('/message', 'Api\MessageApartmentController@send');
+
+Route::get('/services', 'Api\ServiceController@index');
