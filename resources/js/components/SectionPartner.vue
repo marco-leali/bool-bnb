@@ -1,5 +1,5 @@
 <template>
-   <section  id="partner">
+  <section id="partner">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-12 text-center my-5">
@@ -7,7 +7,7 @@
         </div>
         <div class="col-sm-12 col-md-3 my-4 text-muted text-center">
           <i class="fa-solid fa-bed fa-2x"></i>
-          <h5>Il tuo miglior confort</h5>
+          <h5>Il tuo miglior comfort</h5>
         </div>
         <div class="col-sm-12 col-md-3 my-4 text-muted text-center">
           <i class="fa-solid fa-bell-concierge fa-2x"></i>
@@ -28,12 +28,12 @@
 
 <script>
 export default {
-    name:"SectionPartner"
-}
+  name: "SectionPartner",
+};
 </script>
 
 <style scoped lang="scss">
-#partner{
+#partner {
   padding: 50px 0;
 }
 </style>
