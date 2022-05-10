@@ -1,5 +1,5 @@
 <template>
-  <section id="apartment-detail">
+  <section id="apartment-detail" class="mt-5">
     <div class="container h-100">
       <div class="row h-100">
         <div class="col-12 d-flex align-items-center justify-content-center">

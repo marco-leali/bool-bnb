@@ -1,5 +1,5 @@
 <template>
-<div class="container text-center fs-1 mb-3" id="page-height">
+<div class="container text-center fs-1 mb-3 mt-5" id="page-height">
     <div>In basso troverai le nostre migliori offerte per sponsorizzare il tuo appartamento</div>
     <div class="row g-5 mt-5">
     <div class="card-pack text-center col-sm-12 col-md-6 col-lg-4 col-xl-4">

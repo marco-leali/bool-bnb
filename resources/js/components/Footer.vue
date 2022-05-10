@@ -17,8 +17,8 @@
                   <ul class="navbar-nav pad" >
                       <li class="nav-item"><router-link class="nav-link text-dark" :to="{name:'HomePage'}">Home</router-link></li>
                       <li class="nav-item"><router-link class="nav-link text-dark" :to="{name:'ApartmentsSearch'}">Cerca appartamenti</router-link></li>
-                      <li class="nav-item"><router-link class="nav-link text-dark" :to="{name:'HomePage'}">Contattaci</router-link></li>
-                  </ul>
+<!--                       <li class="nav-item"><router-link class="nav-link text-dark" :to="{name:'HomePage'}">Contattaci</router-link></li>
+ -->                  </ul>
                   
               </div>
               <div class="col-sm-12 col-md-4 col-lg-4 text-center">

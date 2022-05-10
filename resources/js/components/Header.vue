@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <div class="container-fluid">
+  <header class="shadow">
+    <div class="container-fluid bg-light">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#"><img src="http://www.mattonsbnb.com/wp-content/uploads/2016/04/cropped-icon-1.png" width="50" alt=""> BoolBnB</a>
@@ -60,5 +60,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+header{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
 </style>

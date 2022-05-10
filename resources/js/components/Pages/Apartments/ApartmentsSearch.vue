@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
       <div class="row">
         <div class="col-6">
           <div id="map" style="width: 100%; height: 400px"></div>

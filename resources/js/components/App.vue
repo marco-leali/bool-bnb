@@ -1,7 +1,9 @@
 <template>
   <div>
     <Header />
+    <main>
     <router-view></router-view>
+    </main>
     <Footer />
   </div>
 </template>
@@ -18,3 +20,9 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+main{
+  padding-top: 75px;
+}
+</style>
