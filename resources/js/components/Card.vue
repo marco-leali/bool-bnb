@@ -3,7 +3,7 @@
   <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
     <div class="card position-relative px-0">
       <div v-if="item.packs.length" class="featured lh-lg">
-        Sponsorizzato <i class="fa-solid fa-circle-check"></i>
+        Consigliato <i class="fa-solid fa-star"></i>
       </div>
 
       <img
@@ -22,9 +22,47 @@
         <p><strong>Bagni: </strong> {{ item.bathroom }}</p>
         <p><strong>Letti:</strong> {{ item.bed }}</p>
         <p><strong>Metri quadrati:</strong> {{ item.square_meters }}</p>
-        <p><strong>Località: </strong>{{ item.position.city }}</p>
+        <p>
+          <strong>Località: </strong>{{ item.position.city }} ({{
+            item.position.province
+          }})
+        </p>
       </div>
 
+      <div class="d-flex">
+        <div
+          class="icon mx-2"
+          v-for="service in item.services"
+          :key="service.id"
+        >
+          <i
+            class="fa-solid fa-lg"
+            :class="{
+              'fa-square-parking': service.name == 'Parking',
+              'fa-person-swimming': service.name == 'Swimming pool',
+              'fa-bell-concierge': service.name == 'Concierge',
+              'fa-umbrella-beach': service.name == 'Sea view',
+              'fa-hot-tub-person': service.name == 'Sauna',
+              'fa-wifi': service.name == 'Wi-Fi',
+              'fa-smoking': service.name == 'Smoking',
+            }"
+            :title="service.name"
+          ></i>
+        </div>
+        <div v-if="!item.services.length" class="icon">
+          <i class="fa-solid fa-ban-smoking fa-lg"></i>
+        </div>
+      </div>
+
+      <!-- <div class="icon">
+          <i class="fa-solid fa-square-parking"></i>
+          <i class="fa-solid fa-person-swimming"></i>
+          <i class="fa-solid fa-bell-concierge"></i>
+          <i class="fa-solid fa-umbrella-beach"></i>
+          <i class="fa-solid fa-hot-tub-person"></i>
+          <i class="fa-solid fa-wifi"></i>
+          <i class="fa-solid fa-smoking"></i>
+        </div> -->
       <router-link
         :to="{
           name: 'ApartmentDetail',
@@ -88,6 +126,10 @@ export default {
     box-shadow: black 1px 5px 16px 0px;
     font-size: 0.8rem;
     text-align: center;
+    font-weight: bold;
+    .fa-star {
+      color: rgb(253, 204, 13);
+    }
   }
 }
 

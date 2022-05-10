@@ -19,7 +19,7 @@
                 "
               >
                 <div v-if="isSponsored" class="featured lh-lg">
-                  Sponsorizzato <i class="fa-solid fa-circle-check"></i>
+                  Consigliato <i class="fa-solid fa-star"></i>
                 </div>
                 <img
                   :src="
@@ -53,7 +53,8 @@
                   <p><strong>Letti:</strong> {{ apartment.bed }}</p>
                   <p><strong>Bagni:</strong> {{ apartment.bathroom }}</p>
                   <p>
-                    <strong>Località:</strong> {{ apartment.position.city }},
+                    <strong>Località:</strong>
+                    {{ apartment.position.city }},
                     {{ apartment.position.province }},
                     {{ apartment.position.postal_code }} <br />
                     {{ apartment.position.street }}
@@ -66,6 +67,30 @@
                     }"
                     >Scrimi per ulteriori dettagli</router-link
                   > -->
+                  <div class="d-flex">
+                    <div
+                      class="icon mx-2 my-2"
+                      v-for="service in apartment.services"
+                      :key="service.id"
+                    >
+                      <i
+                        class="fa-solid fa-2x"
+                        :class="{
+                          'fa-square-parking': service.name == 'Parking',
+                          'fa-person-swimming': service.name == 'Swimming pool',
+                          'fa-bell-concierge': service.name == 'Concierge',
+                          'fa-umbrella-beach': service.name == 'Sea view',
+                          'fa-hot-tub-person': service.name == 'Sauna',
+                          'fa-wifi': service.name == 'Wi-Fi',
+                          'fa-smoking': service.name == 'Smoking',
+                        }"
+                        :title="service.name"
+                      ></i>
+                    </div>
+                    <div v-if="!apartment.services.length" class="icon">
+                      <i class="fa-solid fa-ban-smoking fa-2x"></i>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -139,6 +164,10 @@ export default {
     box-shadow: black 1px 5px 16px 0px;
     font-size: 0.8rem;
     text-align: center;
+    font-weight: bold;
+    .fa-star {
+      color: rgb(253, 204, 13);
+    }
   }
 }
 </style>

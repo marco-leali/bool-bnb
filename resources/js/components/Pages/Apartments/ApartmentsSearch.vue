@@ -12,6 +12,7 @@
               class="form-control"
               placeholder="Location"
               v-model="dist"
+              @keyup.enter="searchByLocation"
             />
             <button
               class="btn btn-outline-secondary"
@@ -46,7 +47,7 @@
               id="customRange1"
               :disabled="!dist"
             />
-            <p class="m-0">Raggio attuale: {{ radius }} Km</p>
+            <p v-show="dist" class="m-0">Raggio attuale: {{ radius }} Km</p>
           </div>
           <div class="row">
             <div class="col-6">
@@ -68,7 +69,7 @@
             <!-- Servizi -->
             <div v-if="!servicesLoading" class="row py-4">
               <div
-                class="col-3 py-2"
+                class="col-md-4 col-lg-3 py-2"
                 v-for="service in services"
                 :key="service.id"
               >
@@ -105,6 +106,10 @@
       </div>
     </div>
     <section id="detail-apartment" class="container-fluid my-5 p-5">
+      <h1 class="text-center" v-if="!filteredApartments.length">
+        La Ricerca non ha prodotto risultati!
+      </h1>
+
       <div v-if="!isLoading" class="row g-5">
         <Card
           v-for="apartment in filteredApartments"
@@ -373,6 +378,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.btn-outline-secondary {
+  color: #2f4f4f;
+  border-color: #2f4f4f;
+  &:hover {
+    background-color: #2f4f4f;
+    color: white;
+  }
+}
 #map {
   border-radius: 20px;
   box-shadow: black 5px 6px 20px -11px;
