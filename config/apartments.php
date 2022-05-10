@@ -152,7 +152,7 @@ return [
     ],
     [
         'title_desc' => 'Appartamento La Conca Motta San Giovanni',
-        'image' => '',
+        'image' => 'https://www.ufficio-vacanze.it/ch24.img/hotel/Bilo__(75).JPG',
         'room' => 4, 'bathroom' => 2,
         'bed' => 2, 'square_meters' => 70,
     ],
