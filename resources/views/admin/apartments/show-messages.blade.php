@@ -23,7 +23,9 @@
                     </div>
                 </div>
             @empty
-                <p>Non ci sono messaggi per l'appartamento <strong>{{ $apartment->title_desc }}</strong> </p>
+                <h1 class="text-center my-5">Non ci sono messaggi per l'appartamento
+                    <strong>{{ $apartment->title_desc }}</strong>
+                </h1>
             @endforelse
         </div>
     </div>
