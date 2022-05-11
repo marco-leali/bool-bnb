@@ -9,9 +9,11 @@
                         <div class="row h-100 align-items-center">
                             <div class="col-12 z-index">
                                 <div class="title text-center  m-5">
-                                    <h1>BENVENUTO {{ Auth::user()->name }} {{ Auth::user()->surname }} </h1>
-                                    <p>Qui troverai tutti gli strumenti per gestire e vendere i tuoi servizi
-                                        <br> <br> Accedi alla sidebar per scoprire i tuoi contenuti
+                                    <h1 style="font-size: 3rem" class="fw-bold">Benvenuto {{ Auth::user()->name }}
+                                        {{ Auth::user()->surname }} </h1>
+                                    <p class="fs-3 fw-bold">Qui troverai tutti gli strumenti per gestire e vendere i tuoi
+                                        servizi
+                                        <br> Accedi alla sidebar per scoprire i tuoi contenuti
                                     </p>
                                 </div>
                             </div>
@@ -26,7 +28,7 @@
             <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-center">
 
                 <div class="card shadow" style="width: 18rem;">
-                    <img class="card-img-top d-none d-lg-block" 
+                    <img class="card-img-top d-none d-lg-block"
                         src="https://s.tmimgcdn.com/scr/800x500/160700/web-dashboard-tables-design-ui_160768-original.jpg"
                         alt="Card image cap">
                     <div class="card-body">
@@ -57,7 +59,7 @@
                     Sponsorizzazione</a>
             </div> --}}
             </div>
-            
+
             <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-center">
                 <div class="card shadow" style="width: 18rem;">
                     <img class="card-img-top d-none d-lg-block"
@@ -71,8 +73,7 @@
             <div class="col-sm-12 col-md-12 col-lg-4 d-flex justify-content-center">
                 <div class="card shadow" style="width: 18rem;">
                     <img class="card-img-top d-none d-lg-block"
-                        src="https://www.tuttocampo.it/Web/Images/News/Original/1444197.png"
-                        alt="Card image cap">
+                        src="https://www.tuttocampo.it/Web/Images/News/Original/1444197.png" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-text">Scopri i vantaggi delle nostre promozioni</h5>
                     </div>

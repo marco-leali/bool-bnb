@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <div class="card">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -34,8 +34,12 @@
                             <li>Città: {{ $apartment->position->city }},{{ $apartment->position->postal_code }}</li>
                             <li>Via: {{ $apartment->position->street }}</li>
                         </ul>
-                        <a href="{{ route('admin.apartments.index') }}" class="btn btn-primary text-light">Torna
+                        <a href="{{ route('admin.apartments.index') }}"
+                            class="btn btn-primary rounded-pill text-light">Torna
                             indietro</a>
+                        <a href="{{ route('admin.apartments.edit', $apartment) }}"
+                            class="btn btn-warning rounded-pill text-dark">Modifica</a>
+                        @include('includes.modal-confirm')
                     </div>
 
                 </div>

@@ -9,11 +9,11 @@
             <div class="col-12 col-md-12 col-lg-6 p-0 m-0">
                 <div class="card shadow" style="width: 640px;">
                     <div class="row g-0">
-                        <div class="col-5">
+                        <div class="col-5 d-none d-md-block">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Placeholder_no_text.svg/1024px-Placeholder_no_text.svg.png"
                                 class="img-fluid rounded-start" style="background:darkslategray" alt="...">
                         </div>
-                        <div class="col-7 d-flex align-items-center justify-content-center px-4">
+                        <div class="col-8 col-md-7 d-flex align-items-center justify-content-center px-4">
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
 
@@ -40,8 +40,8 @@
 
                                     <div class="col-md-6">
                                         <input id="password" type="password" size="100"
-                                            class="form-control @error('password') is-invalid @enderror my-3" name="password"
-                                            required autocomplete="current-password">
+                                            class="form-control @error('password') is-invalid @enderror my-3"
+                                            name="password" required autocomplete="current-password">
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                    
+
                                 <div class="form-group row">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="form-check">

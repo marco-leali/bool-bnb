@@ -23,6 +23,7 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/apartments/{apartment}/messages', 'ApartmentController@showMessages')->name('apartments.show-messages');
         Route::get('/', 'HomeController@index');
+        Route::get('/apartments/statistics', 'ApartmentController@statistics')->name('apartments.statistics');
         Route::resource('/apartments', 'ApartmentController');
         Route::get('/packs/{apartment}', 'PackController@show');
         Route::resource('/packs', 'PackController');

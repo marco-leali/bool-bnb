@@ -1,5 +1,5 @@
 @csrf
-<div class="container">
+<div class="container mt-5">
 
     {{-- @if ($errors->any())
         <div class="alert alert-danger">
@@ -32,11 +32,13 @@
             <div class="row">
 
                 <div class="col-2">
-                    <img src="{{ $apartment->image ?? 'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg' }}" alt="preview" width="100" height="100" id="output">
+                    <img src="{{ $apartment->image ?? 'https://www.edengi.it/vendor/paginesi/custom_sdk/src/php_classes/placeholder.jpg' }}"
+                        alt="preview" width="100" height="100" id="output">
                 </div>
                 <div class="col-10">
                     <label for="image" class="form-label">Carica L'immagine</label>
-                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="loadFile(event)">
+                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"
+                        onchange="loadFile(event)">
                     @error('image')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -45,7 +47,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div class="row">
         <div class="col-4 mb-3">
@@ -169,27 +171,25 @@
 </div>
 
 
- 
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
- 
+
 <script type="text/javascript">
-      
-$(document).ready(function (e) {
- 
-   
-   $('#image').change(function(){
-            
-    let reader = new FileReader();
- 
-    reader.onload = (e) => { 
- 
-      $('#output').attr('src', e.target.result); 
-    }
- 
-    reader.readAsDataURL(this.files[0]); 
-   
-   });
-   
-});
- 
+    $(document).ready(function(e) {
+
+
+        $('#image').change(function() {
+
+            let reader = new FileReader();
+
+            reader.onload = (e) => {
+
+                $('#output').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(this.files[0]);
+
+        });
+
+    });
 </script>

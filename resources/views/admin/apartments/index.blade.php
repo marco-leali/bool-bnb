@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         @if (session('message'))
             <div class="alert alert-success">
                 {!! session('message') !!}
@@ -24,7 +24,7 @@
                     <th scope="col">Letti</th>
                     <th scope="col">MQ</th>
                     <th scope="col">Visibile</th>
-                    <th scope="col">Visualizzazioni</th>
+                    <th scope="col">Views</th>
                     <th scope="col">Messaggi</th>
                     <th scope="col">Azioni</th>
                 </tr>
@@ -70,7 +70,7 @@
 
                             </a>
                         </td>
-                        <td>{{ Str::limit($apartment->title_desc, 10) }}</td>
+                        <td>{{ Str::limit($apartment->title_desc, 20) }}</td>
                         <td>{{ $apartment->room }}</td>
                         <td>{{ $apartment->bathroom }}</td>
                         <td>{{ $apartment->bed }}</td>

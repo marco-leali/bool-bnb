@@ -7,11 +7,35 @@
             <h1>
               Lasciati <span class="text-primary">guidare</span> dalla curiosità
             </h1>
-            <p>
+            <p class="fs-4">
               Pianifica un viaggio con l'aiuto della nostra ricerca da ogni
               parte del mondo
             </p>
-            <div class="d-flex">
+            <div class="position-relative">
+              <div class="search-box">
+                <input
+                  id="search"
+                  type="text"
+                  placeholder="Cerca..."
+                  class="search-input"
+                  v-model.trim="search"
+                />
+
+                <label for="search" class="search-btn">
+                  <router-link
+                    class="text-decoration-none"
+                    :to="{
+                      name: 'ApartmentsSearch',
+                      params: search,
+                      query: { search: search },
+                    }"
+                  >
+                    <i class="fa fa-search"></i>
+                  </router-link>
+                </label>
+              </div>
+            </div>
+            <!-- <div class="d-flex">
               <div
                 class="
                   box-input
@@ -21,9 +45,7 @@
                 "
               >
                 <input type="text" v-model.trim="search" placeholder="Cerca" />
-                <!-- <button class="btn btn-secondary">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button> -->
+
                 <router-link
                   class="btn btn-secondary"
                   :to="{
@@ -34,7 +56,7 @@
                   ><i class="fa-solid fa-magnifying-glass fa-lg"></i
                 ></router-link>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -54,6 +76,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+::placeholder {
+  color: white;
+  opacity: 1;
+}
 #jumbotron {
   height: 100vh;
   background-image: url("https://image.architonic.com/prj2-3/20116834/rua-141-apartment-in-sao-paulo-architonic-3629-01-arcit18.jpg");
@@ -100,5 +126,56 @@ export default {
       }
     }
   }
+}
+
+$bg: #353535;
+$search: #3490dc;
+.search-box {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  transform: translate(0, -50%);
+  height: 60px;
+  background: $bg;
+  line-height: 40px;
+  padding: 10px;
+  border-radius: 60px;
+  cursor: pointer;
+}
+
+.search-input {
+  background: $bg;
+  color: #fff;
+  outline: none;
+  border: none;
+  line-height: 40px;
+  width: 0px;
+  float: left;
+  font-size: 1em;
+  transition: 0.7s ease;
+}
+
+.search-btn a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $bg;
+  padding: 12px;
+  border-radius: 50%;
+  float: right;
+  color: $search;
+  transition: 0.4s ease;
+}
+
+.search-box:hover > .search-input,
+.search-input:focus {
+  width: 240px;
+  margin: 0 8px;
+}
+
+.search-box:hover > .search-btn a,
+.search-input:focus + .search-btn a {
+  background: $search;
+  color: #101010;
 }
 </style>

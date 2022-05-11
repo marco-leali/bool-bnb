@@ -76,7 +76,7 @@ class ApartmentController extends Controller
 
         $data = $request->all();
 
-        if ($data['image']) {
+        if (array_key_exists('image', $data)) {
             $img_url = Storage::disk('public')->put('apartments', $data['image']);
             $data['image'] = "/storage/" . $img_url;
         }
@@ -193,5 +193,27 @@ class ApartmentController extends Controller
     public function showMessages(Apartment $apartment)
     {
         return view('admin.apartments.show-messages', compact('apartment'));
+    }
+
+    public function statistics()
+    {
+        /* conto visualizzazioni propri appartamenti */
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
+        $ipCount = null;
+        $messageCount = null;
+        foreach ($apartments as $apartment) {
+            $ipCount += count($apartment->ipAddresses);
+            /* messaggi propri appartamenti */
+            $messageCount += count($apartment->messages);
+        }
+        /* conto media visualizzazioni tutti appartamenti */
+        $apartment_all = Apartment::all();
+        $ipAllCount = null;
+        foreach ($apartment_all as $apartment) {
+            $ipAllCount += count($apartment->ipAddresses);
+        }
+        $ipAllCount =   round($ipAllCount / count($apartment_all));
+
+        return view('admin.apartments.statistics', compact('ipCount', 'ipAllCount', 'messageCount'));
     }
 }

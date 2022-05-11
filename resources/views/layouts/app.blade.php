@@ -36,23 +36,25 @@
         <div class="area"></div>
         <nav class="main-menu">
             <ul>
-                <li >
+                <li>
                     <a href="/" class="d-flex align-items-center">
                         {{-- <i class="fa fa-home fa-2x"></i> --}}
-                        <img src="http://www.mattonsbnb.com/wp-content/uploads/2016/04/cropped-icon-1.png"
-                                width="46" class="mx-2" alt="">
+                        <img src="http://www.mattonsbnb.com/wp-content/uploads/2016/04/cropped-icon-1.png" width="46"
+                            class="mx-2" alt="">
                         <span class="nav-text ">
-                           <h2 class="fw-bold">BoolBnB</h2>
+                            <h2 class="fw-bold">BoolBnB</h2>
                         </span>
                     </a>
                 </li>
                 <li class="has-subnav py-3 mt-4">
-                    <a href="{{ url('/admin') }}"><i class="fa-solid fa-house-user fa-2x mx-3"></i>  <h5 class="nav-text">La tua dashboard</h5> </a>
+                    <a href="{{ url('/admin') }}"><i class="fa-solid fa-house-user fa-2x mx-3"></i>
+                        <h5 class="nav-text">La tua dashboard</h5>
+                    </a>
                 </li>
             </ul>
             <ul>
                 @if (Auth::user() && Auth::user())
-                    {{-- Benvenuto {{ Auth::user()->name }} {{ Auth::user()->surname }} --}}                   
+                    {{-- Benvenuto {{ Auth::user()->name }} {{ Auth::user()->surname }} --}}
                     <li class="has-subnav py-3">
                         <a href="{{ route('admin.apartments.index') }}">
                             <i class="fa fa-list fa-2x"></i>
@@ -69,8 +71,16 @@
                             </h5>
                         </a>
                     </li>
+                    <li class="has-subnav py-3">
+                        <a href="{{ route('admin.apartments.statistics') }}">
+                            <i class="fa-solid fa-chart-column fa-2x mx-3"></i>
+                            <h5 class="nav-text">
+                                Statistiche
+                            </h5>
+                        </a>
+                    </li>
                 @else
-                     {{ Auth::user() }}
+                    {{ Auth::user() }}
                 @endif
             </ul>
             <ul class="logout">
@@ -80,8 +90,9 @@
                     </li>
                 @else
                     <li class="text-secondary">
-                        <a class="ms-3 d-flex" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                        <a class="ms-3 d-flex" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                                             document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-power-off fa-2x pe-3"></i>
                             <h5>Esci</h5>
 

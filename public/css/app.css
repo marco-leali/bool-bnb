@@ -11255,11 +11255,11 @@ textarea.form-control-lg {
   transform: scale(3);
 }
 
-.fa-2x {
+.has-subnav .fa-2x {
   font-size: 2em;
 }
 
-.fa {
+.has-subnav .fa {
   position: relative;
   display: table-cell;
   width: 60px;
