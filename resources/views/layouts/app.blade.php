@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'BoolBnB') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -92,7 +92,7 @@
                     <li class="text-secondary">
                         <a class="ms-3 d-flex" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                             document.getElementById('logout-form').submit();">
+                                                                                 document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-power-off fa-2x pe-3"></i>
                             <h5>Esci</h5>
 
