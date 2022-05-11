@@ -95,7 +95,7 @@
                                 class="btn btn-small btn-warning rounded-circle"><i class="fa-solid fa-pencil"></i></a>
                             @include('includes.modal-confirm')
                         </td>
-                    @empty <td class="text-center fs-1" colspan="9">Non hai appartamenti registrati</td>
+                    @empty <td class="text-center fs-1" colspan="11">Non hai appartamenti registrati</td>
                     </tr>
                 @endforelse
             </tbody>

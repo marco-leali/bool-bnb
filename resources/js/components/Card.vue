@@ -2,7 +2,7 @@
   <!-- Card -->
   <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
     <div class="card position-relative px-0">
-      <div v-if="item.packs.length" class="featured lh-lg">
+      <div v-if="isSponsored" class="featured lh-lg">
         Consigliato <i class="fa-solid fa-star"></i>
       </div>
 
@@ -72,7 +72,7 @@
       <router-link
         :to="{
           name: 'ApartmentDetail',
-          params: { id: item.id, apartment: item },
+          params: { id: item.id, apartment: item, sponsored: isSponsored },
         }"
         class="btn btn-sm btn-secondary mt-3"
         >Scopri di più</router-link
@@ -85,6 +85,53 @@
 export default {
   name: "Card",
   props: ["item"],
+  computed: {
+    isSponsored() {
+      /* Data/ora corrente */
+      var now = new Date();
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+      var hour = now.getHours();
+      var minute = now.getMinutes();
+      var second = now.getSeconds();
+      if (month.toString().length == 1) {
+        month = "0" + month;
+      }
+      if (day.toString().length == 1) {
+        day = "0" + day;
+      }
+      if (hour.toString().length == 1) {
+        hour = "0" + hour;
+      }
+      if (minute.toString().length == 1) {
+        minute = "0" + minute;
+      }
+      if (second.toString().length == 1) {
+        second = "0" + second;
+      }
+      var dateTime =
+        year +
+        "-" +
+        month +
+        "-" +
+        day +
+        " " +
+        hour +
+        ":" +
+        minute +
+        ":" +
+        second;
+      /* console.log(dateTime); */
+      let isSponsored = null;
+      this.item.packs.forEach((p) => {
+        /* console.log(p.pivot.expire < dateTime); */
+        if (p.pivot.expire < dateTime) isSponsored = false;
+        else isSponsored = true;
+      });
+      return isSponsored;
+    },
+  },
 };
 </script>
 
@@ -99,6 +146,7 @@ export default {
   );
   overflow: hidden;
   border: 0;
+  transition: transform 0.8s;
 
   img {
     border-radius: 0.5rem 0.5rem 0 0;
@@ -119,6 +167,7 @@ export default {
   &:hover,
   &:focus-within {
     --card-gradient: #616262 max(8.5rem, 20vh);
+    transform: translateY(-20px);
   }
 
   .featured {

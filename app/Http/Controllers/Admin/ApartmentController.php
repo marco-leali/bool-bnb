@@ -201,19 +201,20 @@ class ApartmentController extends Controller
         $apartments = Apartment::where('user_id', auth()->user()->id)->get();
         $ipCount = null;
         $messageCount = null;
+        $ipAllCount = null;
         foreach ($apartments as $apartment) {
             $ipCount += count($apartment->ipAddresses);
             /* messaggi propri appartamenti */
             $messageCount += count($apartment->messages);
         }
-        /* conto media visualizzazioni tutti appartamenti */
+
+        /* conto media visualizzazioni tutti appartamenti  */
         $apartment_all = Apartment::all();
-        $ipAllCount = null;
+
         foreach ($apartment_all as $apartment) {
             $ipAllCount += count($apartment->ipAddresses);
         }
-        $ipAllCount =   round($ipAllCount / count($apartment_all));
-
+        $ipAllCount = round($ipAllCount / count($apartment_all));
         return view('admin.apartments.statistics', compact('ipCount', 'ipAllCount', 'messageCount'));
     }
 }

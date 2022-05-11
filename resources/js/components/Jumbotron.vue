@@ -19,6 +19,13 @@
                   placeholder="Cerca..."
                   class="search-input"
                   v-model.trim="search"
+                  @keyup.enter="
+                    $router.push({
+                      name: 'ApartmentsSearch',
+                      params: search,
+                      query: { search: search },
+                    })
+                  "
                 />
 
                 <label for="search" class="search-btn">
@@ -132,15 +139,18 @@ $bg: #353535;
 $search: #3490dc;
 .search-box {
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 0;
-  transform: translate(0, -50%);
   height: 60px;
   background: $bg;
   line-height: 40px;
   padding: 10px;
   border-radius: 60px;
   cursor: pointer;
+}
+
+.search-box:hover {
+  animation: jello-horizontal 0.7s both;
 }
 
 .search-input {
@@ -177,5 +187,36 @@ $search: #3490dc;
 .search-input:focus + .search-btn a {
   background: $search;
   color: #101010;
+}
+
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
 }
 </style>

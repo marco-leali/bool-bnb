@@ -141,11 +141,11 @@ export default {
         .then(() => {
           console.log("chiamata terminata");
           this.isLoading = false;
-          if (this.apartment.packs.length) this.isSponsored = true;
         });
     },
   },
   mounted() {
+    this.isSponsored = this.$route.params.sponsored;
     this.getApartment();
   },
 };

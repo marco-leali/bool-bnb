@@ -9,8 +9,15 @@
                         <div class="row h-100 align-items-center">
                             <div class="col-12 z-index">
                                 <div class="title text-center  m-5">
-                                    <h1 style="font-size: 3rem" class="fw-bold">Benvenuto {{ Auth::user()->name }}
-                                        {{ Auth::user()->surname }} </h1>
+
+                                    @if (Auth::user()->name && Auth::user()->surname)
+                                        <h1 style="font-size: 3rem" class="fw-bold">Benvenuto
+                                            {{ Auth::user()->name }}
+                                            {{ Auth::user()->surname }} </h1>
+                                    @else
+                                        <h1 style="font-size: 3rem" class="fw-bold">Benvenuto
+                                            {{ Auth::user()->email }} </h1>
+                                    @endif
                                     <p class="fs-3 fw-bold">Qui troverai tutti gli strumenti per gestire e vendere i tuoi
                                         servizi
                                         <br> Accedi alla sidebar per scoprire i tuoi contenuti

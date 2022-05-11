@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
     <div class="container py-3">
+        <div class="text-center">
+            <h2>Aggiungi un appartamento qui <a class="btn btn-success rounded-circle"
+                    href="{{ route('admin.apartments.create') }}"><i class="fa-solid fa-plus"></i></a> </h2>
+        </div>
         <div class="row">
             <div class="offset-1 col-10 ">
                 <canvas id="myChart"></canvas>
@@ -13,7 +17,7 @@
     <script>
         const labels = [
             'Visualizzazioni',
-            'Media visualizzazioni per appartamento',
+            'Media visite totali di tutti gli appartamenti',
             'Messaggi',
         ];
 

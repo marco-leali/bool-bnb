@@ -23,7 +23,7 @@
     </div>
  </div>  -->
   <div class="container">
-    <h1>I Nostri Pacchetti</h1>
+    <h1 class="pb-4">I Nostri Pacchetti</h1>
     <div class="card-container">
       <div class="card-wrapper">
         <div class="card light">
