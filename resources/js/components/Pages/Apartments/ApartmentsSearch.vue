@@ -107,7 +107,7 @@
       </div>
     </div>
     <section id="detail-apartment" class="container-fluid my-5 p-5">
-      <h1 class="text-center" v-if="!filteredApartments.length">
+      <h1 class="text-center" v-if="!filteredApartments.length && !isLoading">
         La Ricerca non ha prodotto risultati!
       </h1>
 
